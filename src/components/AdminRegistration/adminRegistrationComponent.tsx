@@ -7,6 +7,9 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
+// Import all admin actions
+import { createAdminProfile } from "../../state/actions/adminActions";
+
 const AdminRegistrationComponent: React.FC = () => {
     const router =  useRouter();
 
@@ -39,29 +42,66 @@ const AdminRegistrationComponent: React.FC = () => {
         setPassword(event?.target.value);
     }
 
+    const registerAdmin = async (event: any) => {
+        event.preventDefault();
+
+        const adminDetailsToRegister = {
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            mobile: mobile,
+            password: password
+        }
+
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Access-Control-ALlow-Origin": "*"
+            }
+        }
+
+        await axios.post('http://localhost:3000/api/admin/adminRegister', adminDetailsToRegister, config)
+        .then((response) => {
+            dispatch(createAdminProfile(response.data));
+            setPostStatus(true);
+            console.log(response.data);
+        })
+
+        setTimeout(() => {
+            router.push("/adminLogin")
+        },3000)
+    }
+
     return (
         <>
             <input
                 type = "text"
                 placeholder = "First Name"
+                onChange = {changeFirstNameHandler}
             />
             <input
                 type = "text"
                 placeholder = "Last Name"
+                onChange = {changeLastNameHandler}
             />
             <input
                 type = "email"
                 placeholder = "Email"
+                onChange = {changeEmailHandler}
             />
             <input
                 type = "number"
                 placeholder = "Mobile"
+                onChange = {changeMobileHandler}
             />
             <input
                 type = "password"
                 placeholder = "Password"
+                onChange = {changePasswordHandler}
             />
-            <button>
+            <button
+                onClick={registerAdmin}
+            >
                 Register
             </button>
         </>

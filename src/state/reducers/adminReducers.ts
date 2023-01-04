@@ -11,6 +11,14 @@ const adminReducers = (state = initialState, action: any) => {
                 createAdminData: action.payload,
                 loading: false
             }
+
+        case "loginAdmin":
+            return {
+                ... state,
+                adminLoginData: action.payload,
+                loading: false
+            }
+            
         default: 
             return state
     }
