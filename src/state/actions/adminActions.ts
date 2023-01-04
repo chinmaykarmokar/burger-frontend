@@ -4,3 +4,10 @@ export const createAdminProfile = (data: any) => {
         payload: data
     }
 }
+
+export const loginAdmin = (data: any) => {
+    return {
+        type: "loginAdmin",
+        payload: data
+    }
+}
