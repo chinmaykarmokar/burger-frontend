@@ -50,8 +50,22 @@ const AdminLoginComponent: React.FC = () => {
 
             dispatch(loginAdmin(response.data));
             setPostStatus(true);
+
             console.log(response.data);
+
+            if (response?.data?.accessToken) {
+                router.push("/adminHome");
+            }
+            else {
+                router.push("/adminLogin");
+            }
         })
+
+        setTimeout(() => {
+            localStorage.removeItem("access_token");
+            router.push("/adminLogin");
+            console.log(localStorage.getItem("access_token"));
+        }, 60000)
     }
 
     return (
