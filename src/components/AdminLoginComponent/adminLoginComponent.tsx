@@ -61,11 +61,11 @@ const AdminLoginComponent: React.FC = () => {
             }
         })
 
-        setTimeout(() => {
-            localStorage.removeItem("access_token");
-            router.push("/adminLogin");
-            console.log(localStorage.getItem("access_token"));
-        }, 60000)
+        // setTimeout(() => {
+        //     localStorage.removeItem("access_token");
+        //     router.push("/adminLogin");
+        //     console.log(localStorage.getItem("access_token"));
+        // }, 60000)
     }
 
     return (
