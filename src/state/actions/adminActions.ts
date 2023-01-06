@@ -11,3 +11,17 @@ export const loginAdmin = (data: any) => {
         payload: data
     }
 }
+
+export const getAllCompletedOrders = (data: any) => {
+    return {
+        type: "getAllCompletedOrders",
+        payload: data
+    }
+}
+
+export const getCompleteInventory = (data: any) => {
+    return {
+        type: "getCompleteInventory",
+        payload: data
+    }
+}

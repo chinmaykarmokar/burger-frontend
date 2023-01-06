@@ -18,10 +18,24 @@ const adminReducers = (state = initialState, action: any) => {
                 adminLoginData: action.payload,
                 loading: false
             }
+
+        case "getAllCompletedOrders": 
+            return {
+                ... state,
+                completedOrdersData: action.payload,
+                loading: false
+            }
+
+        case "getCompleteInventory":
+            return {
+                ... state,
+                completeInventoryData: action.payload,
+                loading: false
+            }
             
         default: 
             return state
     }
 }
 
-export default adminReducers
+export default adminReducers;
