@@ -26,10 +26,31 @@ const adminReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getAllLiveOrders":
+            return {
+                ... state,
+                liveOrdersData: action.payload,
+                loading: false
+            }
+
         case "getCompleteInventory":
             return {
                 ... state,
                 completeInventoryData: action.payload,
+                loading: false
+            }
+
+        case "getSingleInventoryItem": 
+            return {
+                ... state,
+                singleInventoryItemData: action.payload,
+                loading: false
+            }
+
+        case "updateItemsInInventory": 
+            return {
+                ... state,
+                updatedInventoryData: action.payload,
                 loading: false
             }
             
