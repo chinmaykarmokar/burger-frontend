@@ -13,6 +13,8 @@ import axios from "axios";
 const GetCompleteInventoryItems: React.FC = () => {
     const dispatch = useDispatch();
 
+    const router = useRouter();
+
     const completeInventory = useSelector((state: any) => {return state?.admin?.completeInventoryData});
 
     const config = {
@@ -34,7 +36,7 @@ const GetCompleteInventoryItems: React.FC = () => {
     },[])
 
     const getIDToUpdateInventoryItem = (params: number) => {
-        alert(`You clicked burger with id ${params}`);
+        router.push(`/updateInventoryItem/${params}`);
     }
 
     return (

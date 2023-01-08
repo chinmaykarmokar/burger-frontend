@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 // Import components
 import GetAllTheOrders from "../components/AllOrdersComponent/allOrdersComponents";
+import AllLiveOrders from "../components/LiveOrdersComponent/getLiveOrders";
 import GetCompleteInventoryItems from "../components/GetInventoryItems/getInventory";
 
 const AdminHome: React.FC = () => {
@@ -29,6 +30,7 @@ const AdminHome: React.FC = () => {
             <>
                 <GetAllTheOrders/>
                 <GetCompleteInventoryItems/>
+                <AllLiveOrders/>
             </>
         :
             <>

@@ -37,7 +37,6 @@ const GetAllTheOrders: React.FC = () => {
     return (
         <>
             <h1>Hello Admin, welcome back!</h1>
-            <h1>{JSON.stringify(completedOrders?.data)}</h1>
             {
                 (!completedOrders && completedOrders == undefined) ?
                 <>
