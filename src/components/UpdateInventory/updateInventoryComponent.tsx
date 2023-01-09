@@ -20,8 +20,8 @@ const UpdateInventoryComponent: React.FC = () => {
 
     const singleItemFromInventory = useSelector((state: any) => {return state?.admin?.singleInventoryItemData})
 
-    const [singleInventoryItem, setSingleInventoryItem] = useState<any>();
-    const [quantity,setQuantity] = useState();
+    const [config,setConfig] = useState<Object>();
+    const [quantity,setQuantity] = useState<any>();
 
     const changeQuantityHandler = (event: any) => {
         setQuantity(event.target.value)
@@ -30,41 +30,69 @@ const UpdateInventoryComponent: React.FC = () => {
     // Get query parameters from URL
     const { inventoryItem }: any = router.query;
     console.log(typeof(parseInt(inventoryItem)));
+               
+    // Get specific item from the inventory
+    const getSingleFoodItemFromInventory = async (configParams: Object) => {
+        if (router.isReady) {
+            await axios.get(`http://localhost:3000/api/admin/singleInventoryItem/${inventoryItem}`, configParams)
+            .then((response) => {
+                dispatch(getSingleInventoryItem(response.data));
+            })
+        }
+        
+    }
 
-
-    if (typeof(window) !== "undefined") {
+    useEffect(() => {
         const config = {
             headers: {
                 "authorization": `Bearer ${localStorage.getItem("access_token")}`
             }
         }
-        
-        const getSingleFoodItemFromInventory = async () => {
-            if (router.isReady) {
-                await axios.get(`http://localhost:3000/api/admin/singleInventoryItem/${inventoryItem}`, config)
-                .then((response) => {
-                    dispatch(getSingleInventoryItem(response.data));
-                })
-            }
-            
-        }
-    
-        useEffect(() => {
-            getSingleFoodItemFromInventory();
-        },[router.isReady])
+        getSingleFoodItemFromInventory(config);
+    },[router.isReady])
+
+    console.log(singleItemFromInventory?.data);
+
+    const updateItemDetails = {
+        quantity: parseInt(quantity)
     }
 
-    console.log(singleItemFromInventory?.data)
+    // Update quantity of current items
+    const updateItemQuantity = async (configParams: any) => {
+        await axios.put(`http://localhost:3000/api/admin/updateInventory/${inventoryItem}`,updateItemDetails, configParams)
+        .then((response) => {
+            dispatch(updateItemsInInventory(response?.data));
+            router.push("/adminHome");
+        })
+    }
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                "authorization": `Bearer ${localStorage.getItem("access_token")}`,
+                "content-type": "application/json",
+                "Access-Control-Allow_Origin": "*"
+            }
+        }
+        setConfig(config);
+    },[])
 
     return (
         <>
             <h1>Welcome to inventory update page.</h1>
-            <h4>You are going to update {singleItemFromInventory?.data?.food_item} with ID {inventoryItem}</h4>
+            <h4>
+                You are going to update {singleItemFromInventory?.data?.food_item} with ID {inventoryItem} having current quantity of {singleItemFromInventory?.data?.quantity}.
+            </h4>
             <input
                 type = "number"
                 placeholder = "Quantity"
                 onChange = {changeQuantityHandler}
             />
+            <button
+                onClick={() => updateItemQuantity(config)}
+            >
+                Update
+            </button>
         </>
     )
 }
