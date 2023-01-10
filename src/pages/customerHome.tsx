@@ -1,9 +1,12 @@
 import React from "react";
 
+// Import components
+import GetCustomerComponent from "../components/GetCustomerComponent/getCustomerComponent";
+
 const CustomerHome: React.FC = () => {
     return (
         <>
-            <h1>Welcome customer</h1>
+            <GetCustomerComponent/>
         </>
     )
 }
