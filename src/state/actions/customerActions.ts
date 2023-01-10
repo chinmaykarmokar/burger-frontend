@@ -18,3 +18,10 @@ export const getCustomer = (data: any) => {
         payload: data
     }
 }
+
+export const getCompleteMenu = (data: any) => {
+    return {
+        type: "getCompleteMenu",
+        payload: data
+    }
+}
