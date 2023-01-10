@@ -26,6 +26,13 @@ const customerReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getCompleteMenu":
+            return {
+                ... state,
+                completeMenuData: action.payload,
+                loading: false
+            }
+
         default: 
             return state
     }

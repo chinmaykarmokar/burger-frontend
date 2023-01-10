@@ -12,10 +12,14 @@ import axios from "axios";
 // Import actions
 import { getCustomer } from "../../state/actions/customerActions";
 
+// Import common functions
+import { getMenuItems } from "../../commonFunctions/commonFunctions";
+
 const GetCustomerComponent: React.FC = () => {
     const dispatch = useDispatch();
 
     const customerData = useSelector((state: any) => {return state?.customers?.getCustomerData});
+    const menuData = useSelector((state: any) => {return state?.customers?.completeMenuData});
 
     const [hydrated, setHydrated] = useState(false);
 
@@ -41,13 +45,24 @@ const GetCustomerComponent: React.FC = () => {
         getSingleCustomerData(config);
     },[])
 
+    useEffect(() => {
+        const config = {
+            headers: {
+                "authorization": `Bearer ${localStorage.getItem("customer_token")}`
+            }
+        }  
+        
+        getMenuItems(dispatch, config);
+    },[])
+
     console.log(customerData);
+    console.log(menuData);
 
     return (
         <>
             {
                 (hydrated && typeof(window) !== "undefined" && localStorage.getItem("customer_token")) ?
-                    <h1>Welcome {customerData[0]?.firstname} {customerData[0]?.lastname}</h1>
+                    <h1>Welcome {customerData?.[0]?.firstname} {customerData?.[0]?.lastname}</h1>
                 :
                     <h1>You are not authorized.</h1>
             }
