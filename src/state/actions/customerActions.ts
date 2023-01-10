@@ -11,3 +11,10 @@ export const customerLogin = (data: any) => {
         paylaod: data
     }
 }
+
+export const getCustomer = (data: any) => {
+    return {
+        type: "getCustomer",
+        payload: data
+    }
+}
