@@ -25,3 +25,17 @@ export const getCompleteMenu = (data: any) => {
         payload: data
     }
 }
+
+export const getCartItems = (data: any) => {
+    return {
+        type: "getCartItems",
+        payload: data
+    }
+}
+
+export const addToCart = (data: any) => {
+    return {
+        type: "addToCart",
+        payload: data
+    }
+} 
