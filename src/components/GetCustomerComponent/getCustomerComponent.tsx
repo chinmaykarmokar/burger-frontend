@@ -19,7 +19,7 @@ import { getMenuItems, getItemsFromCart } from "../../commonFunctions/commonFunc
 const GetCustomerComponent: React.FC = () => {
     const dispatch = useDispatch();
 
-    const [config,setConfig] = useState<Object>();
+    const [config,setConfig] = useState<any>();
 
     const customerData = useSelector((state: any) => {return state?.customers?.getCustomerData});
     const menuData = useSelector((state: any) => {return state?.customers?.completeMenuData});
