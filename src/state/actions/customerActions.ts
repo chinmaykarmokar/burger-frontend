@@ -39,3 +39,17 @@ export const addToCart = (data: any) => {
         payload: data
     }
 } 
+
+export const updateCartToAdd = (data :any) => {
+    return {
+        type: "updateCartToAdd",
+        payload: data
+    }
+}
+
+export const createOrder = (data: any) => {
+    return {
+        type: "createOrder",
+        payload: data
+    }
+}

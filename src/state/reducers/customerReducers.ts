@@ -47,6 +47,20 @@ const customerReducers = (state = initialState, action: any) => {
                 loading: false
             } 
 
+        case "updateCartToAdd":
+            return {
+                ... state,
+                updateCartData: action.payload,
+                loading: false
+            }
+
+        case "createOrder":
+            return {
+                ... state,
+                createOrderData: action.payload,
+                loading: false
+            }
+
         default: 
             return state
     }
