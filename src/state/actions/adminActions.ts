@@ -46,3 +46,24 @@ export const updateItemsInInventory = (data: any) => {
         payload: data
     }
 }
+
+export const fetchOrderAndDeliveryPerson = (data: any) => {
+    return {
+        type: "fetchOrderAndDeliveryPerson",
+        payload: data
+    }
+}
+
+export const singleOrder = (data: any) => {
+    return {
+        type: "singleOrder",
+        payload: data
+    }
+}
+
+export const assignOrderToDeliveryPerson = (data: any) => {
+    return {
+        type: "assignOrderToDeliveryPerson",
+        payload: data
+    }
+}

@@ -13,6 +13,9 @@ import axios from "axios";
 import { getCustomer } from "../state/actions/customerActions";
 import { getCompleteMenu } from "../state/actions/customerActions";
 import { getCartItems } from "../state/actions/customerActions";
+import { getUserWiseOrders } from "../state/actions/customerActions";
+import { getAssignedOrders } from "../state/actions/deliveryPersonActions";
+import { singleOrder } from "../state/actions/adminActions";
 
 export const getCustomerDetails = async (dispatch: any, configParams: Object) => {
     await axios.get("http://localhost:3000/api/customers/allCustomers", configParams)
@@ -32,5 +35,19 @@ export const getItemsFromCart = async (dispatch: any, configParams: Object) => {
     await axios.get("http://localhost:3000/api/customers/getCartItems", configParams)
     .then((response) => {
         dispatch(getCartItems(response?.data?.data));
+    })
+}
+
+export const getUserSpecificOrders = async (dispatch: any, configParams: Object) => {
+    await axios.get("http://localhost:3000/api/customers/getMyOrders", configParams)
+    .then((response) => {
+        dispatch(getUserWiseOrders(response?.data?.data));
+    })
+}
+
+export const fetchAssignedOrders = async (dispatch: any, configParams: Object) => {
+    await axios.get("http://localhost:3000/api/delivery/orderAssigned", configParams)
+    .then((response) => {
+        dispatch(getAssignedOrders(response?.data?.data));
     })
 }

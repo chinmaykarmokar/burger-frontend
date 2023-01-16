@@ -36,6 +36,10 @@ const AllLiveOrders: React.FC = () => {
     useEffect(() => {
         getAllLiveOrdersList();
     },[])
+
+    const redirectToDeliveryAssigningPage = (orderID: number) => {
+        router.push(`/assignOrders/${orderID}`)
+    }
     
     return (
         <>
@@ -56,6 +60,7 @@ const AllLiveOrders: React.FC = () => {
                         <th>Delivery Status</th>
                         <th>Order Date</th>
                         <th>Price</th>
+                        <th>Assign Order</th>
                     </tr>
                     {
                         allLiveOrdersList?.data.map((singleOrder: any) => {
@@ -68,6 +73,13 @@ const AllLiveOrders: React.FC = () => {
                                     <td>{singleOrder?.delivery_status}</td>
                                     <td>{singleOrder?.order_date}</td>
                                     <td>{singleOrder?.price}</td>
+                                    <td>
+                                        <button
+                                            onClick = {() => {redirectToDeliveryAssigningPage(singleOrder?.id)}}
+                                        >
+                                            Assign
+                                        </button>
+                                    </td>
                                 </tr>
                             )
                         })

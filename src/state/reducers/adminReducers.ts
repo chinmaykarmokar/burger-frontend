@@ -53,6 +53,27 @@ const adminReducers = (state = initialState, action: any) => {
                 updatedInventoryData: action.payload,
                 loading: false
             }
+
+        case "fetchOrderAndDeliveryPerson":
+            return {
+                ... state,
+                orderAndDeliveryPersonData: action.payload,
+                loading: false
+            }
+
+        case "singleOrder":
+            return {
+                ... state,
+                singleOrderData: action.payload,
+                loading: false
+            }
+
+        case "assignOrderToDeliveryPerson":
+            return {
+                ... state,
+                assignOrderData: action.payload,
+                loading: false
+            }
             
         default: 
             return state

@@ -53,3 +53,10 @@ export const createOrder = (data: any) => {
         payload: data
     }
 }
+
+export const getUserWiseOrders = (data: any) => {
+    return {
+        type: "getUserWiseOrders",
+        payload: data
+    }
+}

@@ -11,3 +11,17 @@ export const loginDeliveryPerson = (data: any) => {
         payload: data
     }
 }
+
+export const getAssignedOrders = (data: any) => {
+    return {
+        type: "getAssignedOrders",
+        payload: data
+    }
+}
+
+export const completeOrder = (data: any) => {
+    return {
+        type: "completeOrder",
+        payload: data
+    }
+}
