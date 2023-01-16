@@ -23,6 +23,7 @@ const GetCustomerComponent: React.FC = () => {
 
     const customerData = useSelector((state: any) => {return state?.customers?.getCustomerData});
     const menuData = useSelector((state: any) => {return state?.customers?.completeMenuData});
+    const menuData1 = useSelector((state: any) => {return state});
     const cartData = useSelector((state: any) => {return state?.customers?.completeCartData});
 
     const [hydrated, setHydrated] = useState(false);
@@ -98,7 +99,7 @@ const GetCustomerComponent: React.FC = () => {
     },[])
 
     console.log(customerData);
-    console.log(menuData);
+    console.log(menuData1);
 
     return (
         <>

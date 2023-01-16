@@ -61,6 +61,13 @@ const customerReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getUserWiseOrders":
+            return {
+                ... state,
+                userOrderData: action.payload,
+                loading: false
+            }
+
         default: 
             return state
     }
