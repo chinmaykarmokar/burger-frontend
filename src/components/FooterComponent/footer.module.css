@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+.footer {
+    font-family: DM Serif Display;
+    background-color: beige;
+    padding: 2%;
+    text-align: center;
+    /* position: absolute; */
+    bottom: 0;
+}
