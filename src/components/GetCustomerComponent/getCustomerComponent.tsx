@@ -16,6 +16,19 @@ import { addToCart } from "../../state/actions/customerActions"
 // Import common functions
 import { getMenuItems, getItemsFromCart } from "../../commonFunctions/commonFunctions";
 
+// Import layout
+import CustomerLayoutComponent from "../../Layout/customerLayout";
+
+// Import styles
+import styles from "./getCustomer.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
+
+// Import react-icons
+import { RiPlantFill, RiShoppingCartFill, RiPriceTag3Fill } from "react-icons/ri";
+import { BiFoodTag } from "react-icons/bi";
+
 const GetCustomerComponent: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -102,34 +115,60 @@ const GetCustomerComponent: React.FC = () => {
     console.log(menuData1);
 
     return (
-        <>
+        <CustomerLayoutComponent user = {`${customerData?.[0]?.firstname} ${customerData?.[0]?.lastname}`}>
+            <Container fluid className = {styles.headerContainer}>
+                <Row>
+                    <Col className = {styles.header}>
+                        <h1>Menu &nbsp;
+                        <Button className = {styles.headerButton}>
+                            <RiPlantFill/> Veg Only
+                        </Button>
+                        </h1>
+                    </Col>
+                    <Col>
+                        
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
             {
                 (hydrated && typeof(window) !== "undefined" && localStorage.getItem("customer_token")) ?
-                    <>
-                        <h1>Welcome {customerData?.[0]?.firstname} {customerData?.[0]?.lastname}</h1>
+                    <Container fluid className = {styles.menuContainer}>
+                        <Row>
                         {
                             menuData?.map((singleMenuItem: any) => {
                                 return (
-                                    <div>
-                                        <h4>{singleMenuItem?.burger_name} ({singleMenuItem?.category})</h4>
-                                        <h4>₹{singleMenuItem?.price}</h4>
-                                        <button
-                                            onClick = {() => {
-                                                addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
-                                            }}
-                                        >
-                                        {/* <button onClick={() => {addBurgerToCart(singleMenuItem?.id)}}> */}
-                                            Add To Cart
-                                        </button>
-                                    </div>
+                                    <Col md = {3} className = {styles.burgerCardsCol}>
+                                        <Card className = {styles.burgerCard}>
+                                            <Card.Img 
+                                                variant="top" 
+                                                src = {singleMenuItem?.burger_image} 
+                                                className = {styles.burgerCardImage}
+                                            />
+                                            <Card.Body>
+                                                <Card.Title>{singleMenuItem?.burger_name}</Card.Title>
+                                                <Card.Text><RiPriceTag3Fill/> ₹ {singleMenuItem?.price}</Card.Text>
+                                                <Card.Text><BiFoodTag/> {singleMenuItem?.category}</Card.Text>
+                                                <Button
+                                                    className = {styles.addToCartButton}
+                                                    onClick = {() => {
+                                                        addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
+                                                    }}
+                                                >
+                                                    <RiShoppingCartFill/> Add To Cart
+                                                </Button>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
                                 )
                             })
                         }
-                    </>
+                        </Row>
+                    </Container>
                 :
                     <h1>You are not authorized.</h1>
             }
-        </>
+        </CustomerLayoutComponent>
     )
 }
 

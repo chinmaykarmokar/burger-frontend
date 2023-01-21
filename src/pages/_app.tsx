@@ -7,11 +7,14 @@ import store from '../state/store/store';
 
 // Use React-Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { SSRProvider } from "react-bootstrap";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store = {store}>
-      <Component {...pageProps} />
-    </Provider>
+    <SSRProvider>
+        <Provider store = {store}>
+          <Component {...pageProps} />
+        </Provider>
+    </SSRProvider>
   )
 }

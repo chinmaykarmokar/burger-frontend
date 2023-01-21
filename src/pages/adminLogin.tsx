@@ -7,12 +7,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 // Import components
 import AdminLoginComponent from '../components/AdminLoginComponent/adminLoginComponent'
+import Footer from '../components/FooterComponent/footerComponent'
 
 export default function AdminLogin() {
   return (
     <>
-      <h1>CBS Burger: Admin Login</h1>
       <AdminLoginComponent/>
+      <Footer/>
     </>
   )
 }

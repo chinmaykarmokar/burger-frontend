@@ -12,6 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 // import axios
 import axios from "axios";
 
+// Import styles
+import styles from "./adminLogin.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+
+// Import react-icons
+import { FaSignature, FaHamburger } from "react-icons/fa";
+import { RiLoginCircleFill } from "react-icons/ri";
+
 const AdminLoginComponent: React.FC = () => {
     const router = useRouter();
 
@@ -69,23 +79,43 @@ const AdminLoginComponent: React.FC = () => {
     }
 
     return (
-        <>
-            <input
-                type = "email"
-                placeholder = "Email"
-                onChange = {changeEmailHandler}
-            />
-            <input
-                type = "password"
-                placeholder = "Password"
-                onChange = {changePasswordHandler}
-            />
-            <button
-                onClick={adminLoginHandler}
-            >
-                Login
-            </button>
-        </>
+        <Container fluid className = {styles.customerRegForm}>
+            <h1 className = {styles.pageHeader}><FaSignature/> Admin Login</h1>
+            <Row>
+                <Col md = {6} className = {styles.logoContainer}>
+                    <h1 className = {styles.brand}><FaHamburger/> Burpger</h1>
+                    <div className = {styles.userType}>Admin</div>
+                </Col>
+                <Col md = {6} className = {styles.formContainer}>
+                    <Form>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Email ID</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "email"
+                                placeholder = "Email"
+                                onChange = {changeEmailHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "password"
+                                placeholder = "Password"
+                                onChange = {changePasswordHandler}
+                            />
+                        </Form.Group>
+                        <Button
+                            className = {styles.registerButton}
+                            onClick={adminLoginHandler}
+                        >
+                            <RiLoginCircleFill/> Login
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

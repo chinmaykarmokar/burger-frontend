@@ -12,6 +12,15 @@ import axios from "axios";
 // Import actions
 import { registerDeliveryPerson } from "../../state/actions/deliveryPersonActions";
 
+// Import styles
+import styles from "./deliveryPersonRegister.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+
+// Import react-icons
+import { FaSignature, FaHamburger, FaPen } from "react-icons/fa";
+
 const DeliveryPersonRegister: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -56,15 +65,20 @@ const DeliveryPersonRegister: React.FC = () => {
             password: password
         }
 
-        await axios.post("http://localhost:3000/api/delivery/deliveryPersonregister", deliveryPersonDetails, configParams)
-        .then((response) => {
-            dispatch(registerDeliveryPerson(response?.data));
-            console.log(response?.data);
-        })
+        try {
+            await axios.post("http://localhost:3000/api/delivery/deliveryPersonregister", deliveryPersonDetails, configParams)
+            .then((response) => {
+                dispatch(registerDeliveryPerson(response?.data));
+                console.log(response?.data);
+            })
 
-        setTimeout(() => {
-            router.push("/deliveryPersonLogin");
-        },2000)
+            setTimeout(() => {
+                router.push("/deliveryPersonLogin");
+            },2000)
+        }
+        catch (e) {
+            alert(e);
+        }
     }
 
     useEffect(() => {
@@ -78,40 +92,82 @@ const DeliveryPersonRegister: React.FC = () => {
         setConfig(config)
     },[])
 
+    const redirectToDeliveryPersonLoginPage = () => {
+        router.push("/deliveryPersonLogin");
+    }
+
     return (
-        <>
-            <h1>Delivery Person Register</h1>
-            <input
-                type = "text"
-                placeholder = "Name"
-                onChange = {changeNameHandler}
-            />
-            <input
-                type = "number"
-                placeholder = "Mobile number"
-                onChange = {changePhoneNumberHandler}
-            />
-            <input
-                type = "number"
-                placeholder = "Aadhar number"
-                onChange = {changeAadharHandler}
-            />
-            <input
-                type = "email"
-                placeholder = "Email"
-                onChange = {changeEmailHandler}
-            />
-            <input
-                type = "password"
-                placeholder = "Password"
-                onChange = {changePasswordHandler}
-            />
-            <button
-                onClick={() => {deliveryPersonRegistration(config)}}
-            >
-                Register
-            </button>
-        </>
+        <Container fluid  className = {styles.customerRegForm}>
+            <h1 className = {styles.pageHeader}><FaSignature/> Delivery Person Register</h1>
+            <Row>
+                <Col md = {6} className = {styles.logoContainer}>
+                    <h1 className = {styles.brand}><FaHamburger/> Burpger</h1>
+                    <div className = {styles.userType}>Delivery Person</div>
+                </Col>
+                <Col md = {6} className = {styles.formContainer}>
+                    <h5>Already registered? <a
+                        className = {styles.loginButton}
+                            onClick = {redirectToDeliveryPersonLoginPage}
+                        >
+                            Login
+                        </a>
+                    </h5>
+                    <Form>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "text"
+                                placeholder = "Name"
+                                onChange = {changeNameHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Mobile Number</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "number"
+                                placeholder = "Mobile number"
+                                onChange = {changePhoneNumberHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Aadhar Number</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "number"
+                                placeholder = "Aadhar number"
+                                onChange = {changeAadharHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Email ID</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "email"
+                                placeholder = "Email"
+                                onChange = {changeEmailHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "password"
+                                placeholder = "Password"
+                                onChange = {changePasswordHandler}
+                            />
+                        </Form.Group>
+                        <Button
+                            className = {styles.registerButton}
+                            onClick={() => {deliveryPersonRegistration(config)}}
+                        >
+                            <FaPen/> Register
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
