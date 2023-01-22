@@ -12,6 +12,13 @@ export const loginAdmin = (data: any) => {
     }
 }
 
+export const getAdminDetails = (data: any) => {
+    return {
+        type: "getAdminDetails",
+        payload: data
+    }
+}
+
 export const getAllCompletedOrders = (data: any) => {
     return {
         type: "getAllCompletedOrders",

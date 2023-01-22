@@ -1,10 +1,10 @@
 import React from "react";
 
 // Import Components
-import CustomerNavbarComponent from "../components/NavbarComponent/customerNavbarComponent";
+import CustomerNavbarComponent from "../components/CustomerNavbarComponent/customerNavbarComponent";
 import Footer from "../components/FooterComponent/footerComponent";
 
-const LayoutComponent = ({ user, children }: any) => {
+const CustomerLayoutComponent = ({ user, children }: any) => {
     return (
         <>
             <CustomerNavbarComponent loggedInPerson = {user}/>
@@ -14,4 +14,4 @@ const LayoutComponent = ({ user, children }: any) => {
     )
 }
 
-export default LayoutComponent;
+export default CustomerLayoutComponent;

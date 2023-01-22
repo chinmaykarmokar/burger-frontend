@@ -12,6 +12,16 @@ import axios from "axios";
 // Import actions
 import { loginDeliveryPerson } from "../../state/actions/deliveryPersonActions";
 
+// Import styles
+import styles from "./deliveryPersonLogin.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+
+// Import react-icons
+import { FaSignature, FaHamburger } from "react-icons/fa";
+import { RiLoginCircleFill } from "react-icons/ri";
+
 const DeliveryPersonLogin: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -63,24 +73,43 @@ const DeliveryPersonLogin: React.FC = () => {
     },[])
 
     return (
-        <>
-            <h1>Delivery person login</h1>
-            <input
-                type = "email"
-                placeholder = "Email"
-                onChange = {changeEmailHandler}
-            />
-            <input
-                type = "password"
-                placeholder = "Password"
-                onChange = {changePasswordHandler}
-            />
-            <button
-                onClick = {() => {loginDeliveryPersonHandler(config)}}
-            >
-                Login
-            </button>
-        </>
+        <Container fluid className = {styles.customerRegForm}>
+            <h1 className = {styles.pageHeader}><FaSignature/> Delivery person login</h1>
+            <Row>
+                <Col md = {6} className = {styles.logoContainer}>
+                    <h1 className = {styles.brand}><FaHamburger/> Burpger</h1>
+                    <div className = {styles.userType}>DeliveryPerson</div>
+                </Col>
+                <Col md = {6} className = {styles.formContainer}>
+                    <Form>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Email ID</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "email"
+                                placeholder = "Email"
+                                onChange = {changeEmailHandler}
+                            />
+                        </Form.Group>
+                        <Form.Group className = {styles.inputField}>
+                            <Form.Label>Email ID</Form.Label>
+                            <Form.Control
+                                className = {styles.inputArea}
+                                type = "password"
+                                placeholder = "Password"
+                                onChange = {changePasswordHandler}
+                            />
+                        </Form.Group>
+                        <Button
+                            className = {styles.registerButton}
+                            onClick = {() => {loginDeliveryPersonHandler(config)}}
+                        >
+                            <RiLoginCircleFill/> Login
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </ Container>
     )
 }
 

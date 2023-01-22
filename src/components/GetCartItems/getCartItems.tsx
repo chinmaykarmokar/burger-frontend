@@ -18,6 +18,19 @@ import { createOrder } from "../../state/actions/customerActions";
 import { getItemsFromCart } from "../../commonFunctions/commonFunctions";
 import { getCustomerDetails } from "../../commonFunctions/commonFunctions";
 
+// Import layout
+import CustomerLayoutComponent from "../../Layout/customerLayout";
+
+// Import styles
+import styles from "./getCartItems.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Card, ButtonGroup, Button } from "react-bootstrap";
+
+// Import react-icons
+import { BsFillCartFill, BsFillInboxesFill } from "react-icons/bs";
+import { IoFastFoodOutline, IoPricetagOutline } from "react-icons/io5";
+
 const CartComponent: React.FC = () => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -39,6 +52,7 @@ const CartComponent: React.FC = () => {
         getCustomerDetails(dispatch,config);
     },[])
 
+    console.log(customerDetails);
     console.log(allItemsInCart);
 
     const increaseExistingBurgerQuantity = async (configParams: Object, burgerQuantity: number, newBurgerPrice: number, originalBurgerPrice: number,  burgerIDToUpdate: number) => {
@@ -120,44 +134,65 @@ const CartComponent: React.FC = () => {
     },[])
 
     return (
-        <>
-            <h1>Cart</h1>
+        <CustomerLayoutComponent user = {`${customerDetails?.[0]?.firstname} ${customerDetails?.[0]?.lastname}`}>
             {
-                (allItemsInCart)?.map((singleCartItem: any) => {
-                    return (
-                        <>
-                            <div>
-                                <h4>{singleCartItem?.burger_name}</h4>
-                                <h4>₹ {singleCartItem?.new_burger_price}</h4>
-                                <button
-                                    onClick = {
-                                        () => {
-                                            decreaseExistingBurgerQuantity(config, singleCartItem?.quantity_of_burger, singleCartItem?.new_burger_price, singleCartItem?.burger_price, singleCartItem?.id) 
-                                        }
-                                    }
-                                >-</button>
-                                <button>{singleCartItem?.quantity_of_burger}</button>
-                                <button
-                                    onClick = {
-                                        () => {
-                                            increaseExistingBurgerQuantity(config, singleCartItem?.quantity_of_burger, singleCartItem?.new_burger_price, singleCartItem?.burger_price, singleCartItem?.id) 
-                                        }
-                                    }
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </>
-                    )
-                }) 
+                (allItemsInCart?.length == 0) 
+                ? 
+                <>No Items in cart</> 
+                : 
+                <Container fluid className = {styles.cartContainer}>
+                    <h1 className = {styles.pageHeader}><BsFillCartFill/> Cart</h1>
+                    <Row>
+                        <Col md = {8} className = {styles.cartCardCol}>
+                            {
+                                (allItemsInCart)?.map((singleCartItem: any) => {
+                                    return (
+                                        <>
+                                            <Card className = {styles.cartCard}>
+                                                <h4><IoFastFoodOutline/> {singleCartItem?.burger_name}</h4>
+                                                <h4><IoPricetagOutline/> ₹ {singleCartItem?.new_burger_price}</h4>
+                                                <ButtonGroup className = {styles.cartButtonsGroup}>
+                                                    <Button
+                                                        className = {styles.decreaseButton}
+                                                        onClick = {
+                                                            () => {
+                                                                decreaseExistingBurgerQuantity(config, singleCartItem?.quantity_of_burger, singleCartItem?.new_burger_price, singleCartItem?.burger_price, singleCartItem?.id) 
+                                                            }
+                                                        }
+                                                    >-</Button>
+                                                    <Button
+                                                        className = {styles.quantityButton}
+                                                    >{singleCartItem?.quantity_of_burger}</Button>
+                                                    <Button
+                                                        className = {styles.increaseButton}
+                                                        onClick = {
+                                                            () => {
+                                                                increaseExistingBurgerQuantity(config, singleCartItem?.quantity_of_burger, singleCartItem?.new_burger_price, singleCartItem?.burger_price, singleCartItem?.id) 
+                                                            }
+                                                        }
+                                                    >
+                                                        +
+                                                    </Button>
+                                                </ButtonGroup>
+                                            </Card>
+                                        </>
+                                    )
+                                }) 
+                            }
+                            <br/>
+                            <Button
+                                className = {styles.placeOrderButton}
+                                onClick={placeOrder}
+                            >
+                                <BsFillInboxesFill/> Place Order
+                            </Button>
+                        </Col>
+                        <Col md = {4}></Col>
+                    </Row>
+                </Container>
             }
-            <br/>
-            <button
-                onClick={placeOrder}
-            >
-                Place Order
-            </button>
-        </>
+            
+        </CustomerLayoutComponent>
     )
 }
 
