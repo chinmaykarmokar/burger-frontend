@@ -19,6 +19,13 @@ const adminReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getAdminDetails":
+            return {
+                ... state,
+                adminData: action.payload,
+                loading: false
+            }
+
         case "getAllCompletedOrders": 
             return {
                 ... state,

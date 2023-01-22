@@ -10,12 +10,20 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 // Import actions
+import { getAdminDetails } from "../state/actions/adminActions";
 import { getCustomer } from "../state/actions/customerActions";
 import { getCompleteMenu } from "../state/actions/customerActions";
 import { getCartItems } from "../state/actions/customerActions";
 import { getUserWiseOrders } from "../state/actions/customerActions";
 import { getAssignedOrders } from "../state/actions/deliveryPersonActions";
 import { singleOrder } from "../state/actions/adminActions";
+
+export const getAdminData = async (dispatch: any, configParams: Object) => {
+    await axios.get("http://localhost:3000/api/admin/adminDetails", configParams)
+    .then((response) => {
+        dispatch(getAdminDetails(response?.data?.data));
+    })
+}
 
 export const getCustomerDetails = async (dispatch: any, configParams: Object) => {
     await axios.get("http://localhost:3000/api/customers/allCustomers", configParams)

@@ -13,6 +13,12 @@ import axios from "axios";
 import { fetchAssignedOrders } from "../../commonFunctions/commonFunctions";
 import { completeOrder } from "../../state/actions/deliveryPersonActions";
 
+// Import styles
+import styles from "./deliveryPersonHome.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Button } from "react-bootstrap";
+
 const DeliveryPersonHomeComponent: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -55,7 +61,7 @@ const DeliveryPersonHomeComponent: React.FC = () => {
     console.log(orderAssigned);
 
     return (
-        <>
+        <Container>
             <h1>Welcome Delivery Person!</h1>
             {
                 (orderAssigned?.length === 0) ? 
@@ -77,7 +83,7 @@ const DeliveryPersonHomeComponent: React.FC = () => {
                     )
                 })    
             }
-        </>
+        </Container>
     )
 }
 

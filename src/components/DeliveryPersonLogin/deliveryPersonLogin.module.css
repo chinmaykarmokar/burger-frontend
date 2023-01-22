@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+.customerRegForm {
+    padding: 3%;
+    background-color: beige;
+}
+
+.pageHeader {
+    font-family: DM Serif Display;
+    text-align: center;
+}
+
+.logoContainer {
+    /* position: absolute; */
+    padding: 5%;
+    text-align: center;
+}
+
+.brand {
+    font-family: Fredoka One;
+}
+
+.userType {
+    font-size: 30px;
+    font-family: Patua One;
+    /* background-color: #000; */
+    color: #3333ff;
+}
+
+.formContainer {
+    padding: 2%;
+    font-family: Patua One;
+}
+
+.inputField {
+    margin-bottom: 2%;
+}
+
+.inputArea {
+    border-radius: 20px;
+    border: 1px solid #ff9900;
+}
+
+.loginButton {
+    color: #669900;
+}
+
+.loginButton:hover {
+    color: #669900;
+    cursor: pointer;
+}
+
+.registerButton {
+    border: none;
+    border-radius: 20px;
+    background-color: #ff9900;
+    color: #000;
+    box-shadow: 0px 0px 4px 2px rgba(255, 153, 0, 0.4);
+}
+
+.registerButton:hover {
+    background-color: #ff9900;
+    color: #000;
+    box-shadow: 0px 0px 7px 3.5px rgba(255, 153, 0, 0.4);
+}
