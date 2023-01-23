@@ -14,11 +14,11 @@ const AdminNavbarComponent = ({ loggedInPerson }: any) => {
         <>
             <Navbar collapseOnSelect expand="lg" className = {styles.mainCustomerNav}>
                 <Container fluid>
-                    <Navbar.Brand href="/adminHome" className = {styles.brand}><FaHamburger/> Burpger</Navbar.Brand>
+                    <Navbar.Brand href="/adminHome" className = {styles.brand}><FaHamburger/> Burpger | Admin</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="/customerHome" className = {styles.navItems}>Home</Nav.Link>
+                            {/* <Nav.Link href="/customerHome" className = {styles.navItems}>Home</Nav.Link> */}
                         </Nav>
                         <Nav>
                             {/* <Navbar.Text>{loggedInPerson}</Navbar.Text> */}

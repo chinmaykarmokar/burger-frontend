@@ -26,6 +26,20 @@ const adminReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getAllCustomers":
+            return {
+                ... state,
+                allCustomers: action.payload,
+                loading: false
+            }
+
+        case "getCompleteMenuAdmin":
+            return {
+                ... state,
+                completeMenuData: action.payload,
+                loading: false
+            }
+
         case "getAllCompletedOrders": 
             return {
                 ... state,

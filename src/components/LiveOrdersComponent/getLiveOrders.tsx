@@ -6,8 +6,10 @@ import { useRouter } from "next/router";
 // Import hooks provided by react-redux
 import { useSelector, useDispatch } from "react-redux";
 
-// Import actions
-import { getAllLiveOrders } from "../../state/actions/adminActions";
+// Import common functions
+import { getAllLiveOrdersList } from "../../commonFunctions/commonFunctions";
+
+// Import axios
 import axios from "axios";
 
 const AllLiveOrders: React.FC = () => {
@@ -17,29 +19,21 @@ const AllLiveOrders: React.FC = () => {
 
     const allLiveOrdersList = useSelector((state: any) => {return state?.admin?.liveOrdersData});
 
-    const config = {
-        headers: {
-            "authorization": `Bearer ${localStorage.getItem("access_token")}`
-        }
-    }
-
-    const getAllLiveOrdersList = async () => {
-        await axios.get("http://localhost:3000/api/admin/getAllLiveOrders", config)
-        .then((response: any) => {
-            dispatch(getAllLiveOrders(response.data));
-            // console.log(response?.data);
-        })
-    }
-
-    console.log(allLiveOrdersList);
-
     useEffect(() => {
-        getAllLiveOrdersList();
+        const config = {
+            headers: {
+                "authorization": `Bearer ${localStorage.getItem("access_token")}`
+            }
+        }
+
+        getAllLiveOrdersList(dispatch, config);
     },[])
 
     const redirectToDeliveryAssigningPage = (orderID: number) => {
         router.push(`/assignOrders/${orderID}`)
     }
+
+    console.log(allLiveOrdersList);
     
     return (
         <>

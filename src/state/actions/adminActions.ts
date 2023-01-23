@@ -19,6 +19,20 @@ export const getAdminDetails = (data: any) => {
     }
 }
 
+export const getAllCustomers = (data: any) => {
+    return {
+        type: "getAllCustomers",
+        payload: data
+    }
+}
+
+export const getCompleteMenuAdmin = (data: any) => {
+    return {
+        type: "getCompleteMenuAdmin",
+        payload: data
+    }
+}
+
 export const getAllCompletedOrders = (data: any) => {
     return {
         type: "getAllCompletedOrders",

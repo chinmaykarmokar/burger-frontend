@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+.mainCard {
+    padding: 5%;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to bottom right, #4d4d00, #e6e600);
+    box-shadow: 0px 0px 5px 2.5px rgba(77, 77, 0, 0.4);
+}
+
+.userType {
+    font-family: Patua One;
+    color: #fff;
+    font-size: 230%;
+}
+
+.count {
+    font-family: Fredoka One;
+    color: #fff;
+    font-size: 40px;
+}
