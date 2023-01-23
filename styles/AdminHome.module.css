@@ -1,0 +1,15 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+.cardsContainer {
+    background-color: beige;
+    padding: 3%;
+    /* margin-bottom: 1%; */
+}
+
+.pageHeader1 {
+    font-family: DM Serif Display;
+    margin-bottom: 1.5%;
+}

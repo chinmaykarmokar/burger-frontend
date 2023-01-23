@@ -3,58 +3,56 @@ import React, { useState, useEffect } from "react";
 // Import axios
 import axios from "axios";
 
-// Import actions for admin
-import { getAllCompletedOrders } from "../../state/actions/adminActions";
+// Import common functions
+import { fetchAllCompletedOrders } from "../../commonFunctions/commonFunctions";
 
 // Import hooks provided by react-redux
 import { useSelector, useDispatch } from "react-redux";
+
+// Import styles
+import styles from "./allOrdersComponent.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col, Table } from "react-bootstrap";
 
 const GetAllTheOrders: React.FC = () => {
     const dispatch = useDispatch();
 
     const completedOrders = useSelector((state: any) => {return state?.admin?.completedOrdersData})
 
-    const config = {
-        headers: {
-            "authorization": `Bearer ${localStorage.getItem("access_token")}`
-        }
-    }
-
-    const fetchAllCompletedOrders = async () => {
-        await axios.get("http://localhost:3000/api/admin/getAllCompletedOrders", config)
-        .then((response) => {
-            dispatch(getAllCompletedOrders(response?.data));
-            // console.log(response.data);
-        })
-    }
-
     useEffect(() => {
-        fetchAllCompletedOrders();
+        const config = {
+            headers: {
+                "authorization": `Bearer ${localStorage.getItem("access_token")}`
+            }
+        }
+
+        fetchAllCompletedOrders(dispatch,config);
     }, [])
 
     console.log(completedOrders?.data);
 
     return (
         <>
-            <h1>Hello Admin, welcome back!</h1>
             {
                 (!completedOrders && completedOrders == undefined) ?
                 <>
                     Loading....
                 </>
                 :
-                <>   
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Items</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Delivery Status</th>
-                            <th>Order Date</th>
-                            <th>Price</th>
-                        </tr>
-                        
+                <Container fluid className = {styles.tableContainer}>   
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Items</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Delivery Status</th>
+                                <th>Order Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
                             {completedOrders?.data.map((singleOrder: any) => {
                                 return (
                                     <tr>
@@ -68,8 +66,8 @@ const GetAllTheOrders: React.FC = () => {
                                     </tr>
                                 )
                             })}
-                    </table>
-                </>
+                    </Table>
+                </Container>
             } 
         </>
     )

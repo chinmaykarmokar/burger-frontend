@@ -13,9 +13,22 @@ import { getAdminData } from "../commonFunctions/commonFunctions";
 import GetAllTheOrders from "../components/AllOrdersComponent/allOrdersComponents";
 import AllLiveOrders from "../components/LiveOrdersComponent/getLiveOrders";
 import GetCompleteInventoryItems from "../components/GetInventoryItems/getInventory";
+import TotalCustomersCard from "../components/TotalCustomersCardComponent/totalCustomersCard";
+import TotalCompletedOrdersCard from "../components/TotalCompletedOrdersCard/totalCompletedOrders";
+import TotalLiveOrdersCard from "../components/TotalLiveOrdersComponent/totalLiveOrdersCard";
+import TotalMenuItemsCard from "../components/TotalMenuItems/totalMenuItemsCard";
 
 // Import layout
 import AdminLayoutComponent from "../Layout/adminLayout";
+
+// Import styles
+import styles from "../../styles/AdminHome.module.css";
+
+// Import react-bootstrap components
+import { Container, Row, Col } from "react-bootstrap";
+
+// Import react-icons
+import { BiStats } from "react-icons/bi";
 
 const AdminHome: React.FC = () => {
     const dispatch = useDispatch();
@@ -51,9 +64,26 @@ const AdminHome: React.FC = () => {
     return (
         (hydrated && typeof window !== "undefined" && localStorage.getItem("access_token")) ? 
             <AdminLayoutComponent user = {`${adminData?.[0]?.firstname} ${adminData?.[0]?.lastname}`}>
-                <GetAllTheOrders/>
-                <GetCompleteInventoryItems/>
-                <AllLiveOrders/>
+                <Container fluid className = {styles.cardsContainer}>
+                    <h1 className = {styles.pageHeader1}><BiStats/> Statistics Overview</h1>
+                    <Row>
+                        <Col md ={3}>
+                            <TotalCustomersCard/>
+                        </Col>
+                        <Col md ={3}>
+                            <TotalCompletedOrdersCard/>
+                        </Col>
+                        <Col md ={3}>
+                            <TotalLiveOrdersCard/>
+                        </Col>
+                        <Col md ={3}>
+                            <TotalMenuItemsCard/>
+                        </Col>
+                    </Row>
+                </Container>
+                {/* <GetAllTheOrders/> */}
+                {/* <GetCompleteInventoryItems/>
+                <AllLiveOrders/> */}
             </AdminLayoutComponent>
         :
             <AdminLayoutComponent>
