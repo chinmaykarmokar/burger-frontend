@@ -14,6 +14,15 @@ import { fetchOrderAndDeliveryPerson } from "../../state/actions/adminActions";
 import { assignOrderToDeliveryPerson } from "../../state/actions/adminActions";
 import { singleOrder } from "../../state/actions/adminActions";
 
+// Import styles
+import styles from "./assignOrderComponent.module.css";
+
+// Import react-bootstrap components
+import { Container, Table, Button } from "react-bootstrap";
+
+// Import react-icons
+import { MdOutlineAssignmentInd } from "react-icons/md";
+
 const AssignOrderComponent: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -82,52 +91,53 @@ const AssignOrderComponent: React.FC = () => {
 
     return (
         <>
-            <h1>Assign Orders</h1>
             {
                 (deliveryPersonData?.length === 0) ?
                     <>
                         Loading...
                     </>
                 :
-                <>
-                <table>
-                <tbody>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Aadhar Number</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Assign Order</th>
-                    </tr>
-                    {
-                        deliveryPersonData?.map((singleDeliveryPerson: any) => {
-                            return (
-                                <tr>
-                                    <td>{singleDeliveryPerson?.id}</td>
-                                    <td>{singleDeliveryPerson?.name}</td>
-                                    <td>{singleDeliveryPerson?.phone}</td>
-                                    <td>{singleDeliveryPerson?.aadhar_no}</td>
-                                    <td>{singleDeliveryPerson?.email}</td>
-                                    <td>{singleDeliveryPerson?.status}</td>
-                                    <td>
-                                        <button
-                                            onClick={
-                                                () => {createOrderAndProvideToDeliveryPerson(singleDeliveryPerson?.id, singleOrderData?.address, singleOrderData?.items, config)}
-                                            }
-                                        >
-                                            Assign
-                                        </button>
-                                        {/* <button>Assign</button> */}
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>   
-                </table>
-                </>
+                <Container fluid className = {styles.tableContainer}>
+                    <h1 className = {styles.pageHeader}><MdOutlineAssignmentInd/> Assign Orders</h1>
+                    <Table responsive className = {styles.table}>
+                        <thead className = {styles.tableHeaders}>
+                            <tr>
+                                <th className = {styles.leftTableHeaders}>ID</th>
+                                <th className = {styles.centerTableHeaders}>Name</th>
+                                <th className = {styles.centerTableHeaders}>Phone</th>
+                                <th className = {styles.centerTableHeaders}>Aadhar Number</th>
+                                <th className = {styles.centerTableHeaders}>Email</th>
+                                <th className = {styles.centerTableHeaders}>Status</th>
+                                <th className = {styles.rightTableHeaders}>Assign Order</th>
+                            </tr>
+                        </thead>
+                        {
+                            deliveryPersonData?.map((singleDeliveryPerson: any) => {
+                                return (
+                                    <tr>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.id}</td>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.name}</td>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.phone}</td>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.aadhar_no}</td>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.email}</td>
+                                        <td className = {styles.tableRows}>{singleDeliveryPerson?.status}</td>
+                                        <td className = {styles.tableRows}>
+                                            <Button
+                                                className = {styles.updateButton}
+                                                onClick={
+                                                    () => {createOrderAndProvideToDeliveryPerson(singleDeliveryPerson?.id, singleOrderData?.address, singleOrderData?.items, config)}
+                                                }
+                                            >
+                                                Assign
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                       
+                    </Table>
+                </Container>
             }
         </>
     )

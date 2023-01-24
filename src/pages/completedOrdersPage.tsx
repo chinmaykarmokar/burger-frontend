@@ -4,15 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Import common functions
-import { getAdminData } from "../../commonFunctions/commonFunctions";
-
-// Import layout
-import AdminLayoutComponent from "../../Layout/adminLayout";
+import { getAdminData } from "../commonFunctions/commonFunctions";
 
 // Import components
-import AssignOrderComponent from "../../components/AssignOrderComponent/assignOrderComponent";
+import AdminLayoutComponent from "../Layout/adminLayout";
+import GetAllTheOrders from "../components/AllOrdersComponent/allOrdersComponents";
 
-const UserOrder: React.FC = () => {
+const GetCompletedOrdersPage: React.FC = () => {
     const dispatch = useDispatch();
 
     const adminInfo = useSelector((state: any) => {return state?.admin?.adminData});
@@ -22,16 +20,16 @@ const UserOrder: React.FC = () => {
             headers: {
                 "authorization": `Bearer ${localStorage?.getItem("access_token")}`
             }
-        }
+        } 
 
         getAdminData(dispatch,config);
     },[])
 
     return (
         <AdminLayoutComponent user = {`${adminInfo?.[0]?.firstname} ${adminInfo?.[0]?.lastname}`}>
-            <AssignOrderComponent/>
+            <GetAllTheOrders/>
         </AdminLayoutComponent>
     )
 }
 
-export default UserOrder;
+export default GetCompletedOrdersPage;
