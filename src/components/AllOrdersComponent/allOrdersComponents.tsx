@@ -15,6 +15,9 @@ import styles from "./allOrdersComponent.module.css";
 // Import react-bootstrap components
 import { Container, Row, Col, Table } from "react-bootstrap";
 
+// Import react-icons
+import { FaHourglass } from "react-icons/fa";
+
 const GetAllTheOrders: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -40,32 +43,35 @@ const GetAllTheOrders: React.FC = () => {
                     Loading....
                 </>
                 :
-                <Container fluid className = {styles.tableContainer}>   
-                    <Table>
-                        <thead>
+                <Container fluid className = {styles.tableContainer}> 
+                    <h1 className = {styles.pageHeader}><FaHourglass/> Completed Orders</h1>  
+                    <Table responsive className = {styles.table}>
+                        <thead className = {styles.tableHeaders}>
                             <tr>
-                                <th>ID</th>
-                                <th>Items</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Delivery Status</th>
-                                <th>Order Date</th>
-                                <th>Price</th>
+                                <th className = {styles.leftTableHeaders}>ID</th>
+                                <th className = {styles.centerTableHeaders}>Items</th>
+                                <th className = {styles.centerTableHeaders}>Email</th>
+                                <th className = {styles.centerTableHeaders}>Address</th>
+                                <th className = {styles.centerTableHeaders}>Delivery Status</th>
+                                <th className = {styles.centerTableHeaders}>Order Date</th>
+                                <th className = {styles.rightTableHeaders}>Price</th>
                             </tr>
                         </thead>
+                        <tbody>
                             {completedOrders?.data.map((singleOrder: any) => {
                                 return (
                                     <tr>
-                                        <td>{singleOrder?.id}</td>
-                                        <td>{singleOrder?.items}</td>
-                                        <td>{singleOrder?.email}</td>
-                                        <td>{singleOrder?.address}</td>
-                                        <td>{singleOrder?.delivery_status}</td>
-                                        <td>{singleOrder?.order_date.toLocaleString("en-US")}</td>
-                                        <td>{singleOrder?.price}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.id}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.items}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.email}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.address}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.delivery_status}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.order_date.toLocaleString("en-US")}</td>
+                                        <td className = {styles.tableRows}>{singleOrder?.price}</td>
                                     </tr>
                                 )
                             })}
+                        </tbody>
                     </Table>
                 </Container>
             } 

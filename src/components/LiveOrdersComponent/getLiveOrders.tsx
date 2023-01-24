@@ -12,6 +12,15 @@ import { getAllLiveOrdersList } from "../../commonFunctions/commonFunctions";
 // Import axios
 import axios from "axios";
 
+// Import styles
+import styles from "./liveOrdersComponent.module.css";
+
+// Import react-bootstrap components
+import { Container, Table, Button } from "react-bootstrap";
+
+// Import react-icons
+import { MdOutlineDeliveryDining } from "react-icons/md";
+
 const AllLiveOrders: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -37,7 +46,6 @@ const AllLiveOrders: React.FC = () => {
     
     return (
         <>
-            <h1>Get all live orders</h1>
             {
                 (!allLiveOrdersList && allLiveOrdersList !== undefined) 
                 ? 
@@ -45,40 +53,48 @@ const AllLiveOrders: React.FC = () => {
                     Loading...
                 </>
                 :
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Items</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Delivery Status</th>
-                        <th>Order Date</th>
-                        <th>Price</th>
-                        <th>Assign Order</th>
-                    </tr>
-                    {
-                        allLiveOrdersList?.data.map((singleOrder: any) => {
-                            return (
-                                <tr>
-                                    <td>{singleOrder?.id}</td>
-                                    <td>{singleOrder?.items}</td>
-                                    <td>{singleOrder?.email}</td>
-                                    <td>{singleOrder?.address}</td>
-                                    <td>{singleOrder?.delivery_status}</td>
-                                    <td>{singleOrder?.order_date}</td>
-                                    <td>{singleOrder?.price}</td>
-                                    <td>
-                                        <button
-                                            onClick = {() => {redirectToDeliveryAssigningPage(singleOrder?.id)}}
-                                        >
-                                            Assign
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                </table>
+                <Container fluid className = {styles.tableContainer}>
+                    <h1 className = {styles.pageHeader}><MdOutlineDeliveryDining/> Live Orders</h1>
+                    <Table responsive className = {styles.table}>
+                        <thead className = {styles.tableHeaders}>
+                            <tr>
+                                <th className = {styles.leftTableHeaders}>ID</th>
+                                <th className = {styles.centerTableHeaders}>Items</th>
+                                <th className = {styles.centerTableHeaders}>Email</th>
+                                <th className = {styles.centerTableHeaders}>Address</th>
+                                <th className = {styles.centerTableHeaders}>Delivery Status</th>
+                                <th className = {styles.centerTableHeaders}>Order Date</th>
+                                <th className = {styles.centerTableHeaders}>Price</th>
+                                <th className = {styles.rightTableHeaders}>Assign Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                allLiveOrdersList?.data.map((singleOrder: any) => {
+                                    return (
+                                        <tr>
+                                            <td className = {styles.tableRows}>{singleOrder?.id}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.items}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.email}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.address}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.delivery_status}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.order_date}</td>
+                                            <td className = {styles.tableRows}>{singleOrder?.price}</td>
+                                            <td className = {styles.tableRows}>
+                                                <Button
+                                                    className = {styles.updateButton}
+                                                    onClick = {() => {redirectToDeliveryAssigningPage(singleOrder?.id)}}
+                                                >
+                                                    Assign
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </Table>
+                </Container>
             }
         </>
     )

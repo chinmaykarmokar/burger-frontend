@@ -25,10 +25,10 @@ import AdminLayoutComponent from "../Layout/adminLayout";
 import styles from "../../styles/AdminHome.module.css";
 
 // Import react-bootstrap components
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 // Import react-icons
-import { BiStats } from "react-icons/bi";
+import { BiStats, BiDetail } from "react-icons/bi";
 
 const AdminHome: React.FC = () => {
     const dispatch = useDispatch();
@@ -52,6 +52,18 @@ const AdminHome: React.FC = () => {
     },[])
 
     console.log(adminData);
+
+    const redirectToInventoryPage = () => {
+        router.push("/getInventoryPage");
+    }
+
+    const redirectToCompletedOrdersPage = () => {
+        router.push("/completedOrdersPage");
+    }
+
+    const redirectToLiveOrdersPage = () => {
+        router.push("/liveOrdersPage");
+    }
 
     // if (typeof window !== "undefined") {
     //     setTimeout(() => {
@@ -78,6 +90,38 @@ const AdminHome: React.FC = () => {
                         </Col>
                         <Col md ={3}>
                             <TotalMenuItemsCard/>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container fluid className = {styles.cardsContainer}>
+                    <h1 className = {styles.pageHeader1}><BiDetail/> Detailed Stats</h1>
+                    <Row>
+                        <Col>
+                            <Card
+                                onClick = {redirectToInventoryPage}
+                                className = {styles.detailedCards}
+                            >
+                                <Card.Title className = {styles.cardTitle}>Inventory</Card.Title>
+                                <Card.Text>View inventory and update items.</Card.Text>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card
+                                onClick = {redirectToCompletedOrdersPage}
+                                className = {styles.detailedCards}
+                            >
+                                <Card.Title className = {styles.cardTitle}>Completed Orders</Card.Title>
+                                <Card.Text>View completed orders.</Card.Text>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card 
+                                onClick = {redirectToLiveOrdersPage}
+                                className = {styles.detailedCards}
+                            >
+                                <Card.Title className = {styles.cardTitle}>Live Orders</Card.Title>
+                                <Card.Text>View all live orders.</Card.Text>
+                            </Card>
                         </Col>
                     </Row>
                 </Container>

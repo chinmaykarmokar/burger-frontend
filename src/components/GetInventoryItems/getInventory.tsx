@@ -8,7 +8,18 @@ import { getCompleteInventory } from "../../state/actions/adminActions";
 
 // Import hooks provided by react-redux 
 import { useSelector, useDispatch } from "react-redux";
+
+// Import axios
 import axios from "axios";
+
+// Import styles
+import styles from "./getInventory.module.css";
+
+// Import react-bootstrap components
+import { Container, Table, Button } from "react-bootstrap";
+
+// Import react-icons
+import { MdOutlineInventory2 } from "react-icons/md";
 
 const GetCompleteInventoryItems: React.FC = () => {
     const dispatch = useDispatch();
@@ -17,14 +28,8 @@ const GetCompleteInventoryItems: React.FC = () => {
 
     const completeInventory = useSelector((state: any) => {return state?.admin?.completeInventoryData});
 
-    const config = {
-        headers: {
-            "authorization": `Bearer ${localStorage.getItem("access_token")}`
-        }
-    }
-
-    const fetchCompleteInventoryItems = async () => {
-        await axios.get("http://localhost:3000/api/admin/allFoodItems", config)
+    const fetchCompleteInventoryItems = async (configParams: Object) => {
+        await axios.get("http://localhost:3000/api/admin/allFoodItems", configParams)
         .then((response) => {
             dispatch(getCompleteInventory(response.data));
             // console.log(response.data)
@@ -32,7 +37,13 @@ const GetCompleteInventoryItems: React.FC = () => {
     }
 
     useEffect(() => {
-        fetchCompleteInventoryItems();
+        const config = {
+            headers: {
+                "authorization": `Bearer ${localStorage?.getItem("access_token")}`
+            }
+        }
+
+        fetchCompleteInventoryItems(config);
     },[])
 
     const getIDToUpdateInventoryItem = (params: number) => {
@@ -41,41 +52,46 @@ const GetCompleteInventoryItems: React.FC = () => {
 
     return (
         <>
-            <h1>See Inventory</h1>
             {
                 (!completeInventory && completeInventory == "undefined") ? 
                     <>
                         Loading...
                     </>
                 :
-                <>
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Food Item</th>
-                            <th>Inventory Updated On</th>
-                            <th>Quantity</th>
-                            <th>Update</th>
-                        </tr>
-                        
+                <Container fluid className = {styles.tableContainer}>
+                    <h1 className = {styles.pageHeader}><MdOutlineInventory2/> See Inventory</h1>
+                    <Table responsive className = {styles.table}>
+                        <thead className = {styles.tableHeaders}>
+                            <tr>
+                                <th className = {styles.leftTableHeaders}>ID</th>
+                                <th className = {styles.centerTableHeaders}>Food Item</th>
+                                <th className = {styles.centerTableHeaders}>Inventory Updated On</th>
+                                <th className = {styles.centerTableHeaders}>Quantity</th>
+                                <th className = {styles.rightTableHeaders}>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {completeInventory?.data.map((singleItemInInventory: any) => {
                                 return(
                                     <tr>
-                                        <td>{singleItemInInventory?.id}</td>
-                                        <td>{singleItemInInventory?.food_item}</td>
-                                        <td>{singleItemInInventory?.inventory_update_date}</td>
-                                        <td>{singleItemInInventory?.quantity}</td>
-                                        <button
-                                            onClick={() => getIDToUpdateInventoryItem(singleItemInInventory?.id)}
-                                        >
-                                            Update
-                                        </button>
+                                        <td className = {styles.tableRows}>{singleItemInInventory?.id}</td>
+                                        <td className = {styles.tableRows}>{singleItemInInventory?.food_item}</td>
+                                        <td className = {styles.tableRows}>{singleItemInInventory?.inventory_update_date}</td>
+                                        <td className = {styles.tableRows}>{singleItemInInventory?.quantity}</td>
+                                        <td className = {styles.tableRows}>
+                                            <Button
+                                                className = {styles.updateButton}
+                                                onClick={() => getIDToUpdateInventoryItem(singleItemInInventory?.id)}
+                                            >
+                                                Update
+                                            </Button>
+                                        </td>
                                     </tr>
                                 )
                             })}
-                        
-                    </table>
-                </>
+                        </tbody>
+                    </Table>
+                </Container>
             }
         </>
     )
