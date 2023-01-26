@@ -51,7 +51,7 @@ const GetUserOrders: React.FC = () => {
                                 return (
                                     <Card className = {styles.cartCard}>
                                         <h3><IoFastFoodOutline/> {singleOrder?.items}</h3>
-                                        <h4><IoPricetagOutline/> {singleOrder?.price}</h4>
+                                        <h4><IoPricetagOutline/> ₹ {singleOrder?.price}</h4>
                                         <h4 className = {styles.orderStatus}>{singleOrder?.delivery_status}</h4>
                                     </Card>
                                 )

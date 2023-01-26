@@ -13,11 +13,19 @@ import axios from "axios";
 import { fetchAssignedOrders } from "../../commonFunctions/commonFunctions";
 import { completeOrder } from "../../state/actions/deliveryPersonActions";
 
+// Import layout
+import DeliveryPersonLayout from "../../Layout/deliveryPersonLayout";
+
 // Import styles
 import styles from "./deliveryPersonHome.module.css";
 
 // Import react-bootstrap components
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+
+// Import react-icons
+import { MdOutlineAssignment } from "react-icons/md";
+import { FaAddressCard } from "react-icons/fa";
+import { BsInboxes } from "react-icons/bs";
 
 const DeliveryPersonHomeComponent: React.FC = () => {
     const dispatch = useDispatch();
@@ -61,29 +69,35 @@ const DeliveryPersonHomeComponent: React.FC = () => {
     console.log(orderAssigned);
 
     return (
-        <Container>
-            <h1>Welcome Delivery Person!</h1>
-            {
-                (orderAssigned?.length === 0) ? 
-                    <h1>You have no orders assigned.</h1>
-                :
-                orderAssigned?.map((singleOrder: any) => {
-                    return (
-                        <>
-                            <div>
-                                <h3>Order: {singleOrder?.order_id}</h3>
-                                <h3>Address: {singleOrder?.delivery_address}</h3>
-                                <button
-                                    onClick = {() => {completeExistingOrder(config)}}
-                                >
-                                    Complete Delivery
-                                </button>
-                            </div>
-                        </>
-                    )
-                })    
-            }
-        </Container>
+        <DeliveryPersonLayout user = {`${orderAssigned?.[0]?.name}`}>
+            <Container fluid className = {styles.cartContainer}>
+                <h1 className = {styles.pageHeader}><MdOutlineAssignment/> Orders Assigned</h1>
+                <Row>
+                    <Col md = {8} className = {styles.cartCardCol}>
+                    {
+                        (orderAssigned?.length === 0) ? 
+                            <h1>You have no orders assigned.</h1>
+                        :
+                        orderAssigned?.map((singleOrder: any) => {
+                            return (
+                                <Card className = {styles.cartCard}>
+                                    <h3><BsInboxes/> Order: {singleOrder?.order_id}</h3>
+                                    <h3><FaAddressCard/> Address: {singleOrder?.delivery_address}</h3>
+                                    <Button
+                                        className = {styles.completeOrderButton}
+                                        onClick = {() => {completeExistingOrder(config)}}
+                                    >
+                                        Complete Delivery
+                                    </Button>
+                                </Card>
+                            )
+                        })    
+                    }
+                    </Col>
+                    <Col md = {4}></Col>
+                </Row>
+            </Container>
+        </DeliveryPersonLayout>
     )
 }
 
