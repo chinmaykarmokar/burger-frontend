@@ -72,6 +72,8 @@ const DeliveryPersonRegister: React.FC = () => {
                 console.log(response?.data);
             })
 
+            alert("You are registered successfully!");
+
             setTimeout(() => {
                 router.push("/deliveryPersonLogin");
             },2000)

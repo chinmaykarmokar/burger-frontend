@@ -89,6 +89,8 @@ const CustomerRegisterComponent: React.FC = () => {
             setPostStatus(true);
         })
 
+        alert("You have been successfully registered!");
+
         setTimeout(() => {
             router.push("/customerLogin")
         },3000)
