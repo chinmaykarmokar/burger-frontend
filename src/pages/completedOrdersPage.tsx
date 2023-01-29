@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // Import hooks provided by react-redux
 import { useSelector, useDispatch } from "react-redux";
 
+// Import head
+import Head from "next/head";
+
 // Import common functions
 import { getAdminData } from "../commonFunctions/commonFunctions";
 
@@ -27,6 +30,9 @@ const GetCompletedOrdersPage: React.FC = () => {
 
     return (
         <AdminLayoutComponent user = {`${adminInfo?.[0]?.firstname} ${adminInfo?.[0]?.lastname}`}>
+            <Head>
+                <title>Completed Orders</title>
+            </Head>
             <GetAllTheOrders/>
         </AdminLayoutComponent>
     )

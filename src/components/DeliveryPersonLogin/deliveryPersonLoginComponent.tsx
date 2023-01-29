@@ -46,7 +46,7 @@ const DeliveryPersonLogin: React.FC = () => {
             password: password
         }
 
-        axios.post("http://localhost:3000/api/delivery/deliveryLogin", deliveryPersonLoginDetails, configParams)
+        axios.post("https://burpger-1yxc.onrender.com/api/delivery/deliveryLogin", deliveryPersonLoginDetails, configParams)
         .then((response) => {
             localStorage.setItem("delivery_person_token", response?.data?.accessToken);
             dispatch(loginDeliveryPerson(response.data));

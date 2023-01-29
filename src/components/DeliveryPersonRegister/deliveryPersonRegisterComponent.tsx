@@ -66,7 +66,7 @@ const DeliveryPersonRegister: React.FC = () => {
         }
 
         try {
-            await axios.post("http://localhost:3000/api/delivery/deliveryPersonregister", deliveryPersonDetails, configParams)
+            await axios.post("https://burpger-1yxc.onrender.com/api/delivery/deliveryPersonregister", deliveryPersonDetails, configParams)
             .then((response) => {
                 dispatch(registerDeliveryPerson(response?.data));
                 console.log(response?.data);

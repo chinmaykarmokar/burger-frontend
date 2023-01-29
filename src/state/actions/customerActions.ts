@@ -60,3 +60,10 @@ export const getUserWiseOrders = (data: any) => {
         payload: data
     }
 }
+
+export const getVegItems = (data: any) => {
+    return {
+        type: "getVegItems",
+        payload: data
+    }
+}

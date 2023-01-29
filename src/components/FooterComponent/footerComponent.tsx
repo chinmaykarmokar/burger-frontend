@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
     return (
         <>
             <Container fluid className = {styles.footer}>
-                <h4><FaCopyright/> Copyright Burpger Chinmay Karmokar 2023</h4>
+                <h4><FaCopyright/> Copyright Burpger 2023 - Chinmay Karmokar</h4>
             </Container>
         </>
     )

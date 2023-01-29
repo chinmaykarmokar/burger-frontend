@@ -90,7 +90,7 @@ const CartComponent: React.FC = () => {
     }
 
     const placeOrder = async () => {
-        const email = customerDetails[0]?.email;
+        const email = customerDetails?.[0]?.email;
 
         const burgersInTheCart = allItemsInCart?.map((burger: any) => {
             return burger?.burger_name
@@ -100,7 +100,7 @@ const CartComponent: React.FC = () => {
             return burger?.new_burger_price
         })
 
-        const address = customerDetails[0]?.address;
+        const address = customerDetails?.[0]?.address;
 
         const totalBurgerPriceInCart = getPriceOfBurgersInCart?.reduce((price1: number,pricen: number) => price1 + pricen,0)
         const listOfBurgersInCart = burgersInTheCart?.toString();
@@ -114,11 +114,17 @@ const CartComponent: React.FC = () => {
 
         console.log(orderObject);
 
-        axios.post("http://localhost:3000/api/customers/createOrder", orderObject, config)
+        axios.post("https://burpger-1yxc.onrender.com/api/customers/createOrder", orderObject, config)
         .then((response) => {
             dispatch(createOrder(response?.data));
             console.log(response?.data);
         })
+
+        alert ("Order placed successfully!")
+
+        setTimeout(() => {
+            router.push("/getOrders");
+        },3000)
     }
 
     useEffect(() => {
@@ -138,7 +144,9 @@ const CartComponent: React.FC = () => {
             {
                 (allItemsInCart?.length == 0) 
                 ? 
-                <>No Items in cart</> 
+                <Container fluid className = {styles.noItemsContainer}>
+                    <h1 className = {styles.noItemsInCartHeader}>No Items in cart</h1>
+                </Container> 
                 : 
                 <Container fluid className = {styles.cartContainer}>
                     <h1 className = {styles.pageHeader}><BsFillCartFill/> Cart</h1>

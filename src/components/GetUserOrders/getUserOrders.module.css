@@ -33,3 +33,31 @@
     padding: 1%;
     text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .cartCardCol {
+        padding: 4%;
+    }
+
+    .cartCard {
+        margin-bottom: 5%;
+    }
+
+    .orderStatus {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cartCardCol {
+        padding: 4%;
+    }
+
+    .cartCard {
+        margin-bottom: 5%;
+    }
+    
+    .orderStatus {
+        width: 50%;
+    }
+}

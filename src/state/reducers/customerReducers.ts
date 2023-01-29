@@ -68,6 +68,13 @@ const customerReducers = (state = initialState, action: any) => {
                 loading: false
             }
 
+        case "getVegItems": 
+            return {
+                ... state,
+                vegItemsData: action.payload,
+                loading: false
+            }
+
         default: 
             return state
     }

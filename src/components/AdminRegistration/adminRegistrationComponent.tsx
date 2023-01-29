@@ -69,7 +69,7 @@ const AdminRegistrationComponent: React.FC = () => {
             }
         }
 
-        await axios.post('http://localhost:3000/api/admin/adminRegister', adminDetailsToRegister, config)
+        await axios.post('https://burpger-1yxc.onrender.com/api/admin/adminRegister', adminDetailsToRegister, config)
         .then((response) => {
             dispatch(createAdminProfile(response.data));
             setPostStatus(true);

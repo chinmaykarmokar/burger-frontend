@@ -14,6 +14,9 @@ import Footer from '../components/FooterComponent/footerComponent'
 const AdminRegistration: React.FC = () => {
   return (
     <>
+      <Head>
+        <title>Admin Register</title>
+      </Head>
       <AdminRegistrationComponent/>
       <Footer/>
     </>

@@ -12,6 +12,9 @@ import Footer from '../components/FooterComponent/footerComponent'
 export default function AdminLogin() {
   return (
     <>
+      <Head>
+        <title>Admin Login</title>
+      </Head>
       <AdminLoginComponent/>
       <Footer/>
     </>

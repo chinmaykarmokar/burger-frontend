@@ -59,7 +59,7 @@ const AllLiveOrders: React.FC = () => {
                         <thead className = {styles.tableHeaders}>
                             <tr>
                                 <th className = {styles.leftTableHeaders}>ID</th>
-                                <th className = {styles.centerTableHeaders}>Items</th>
+                                <th className = {styles.itemTableHeader}>Items</th>
                                 <th className = {styles.centerTableHeaders}>Email</th>
                                 <th className = {styles.centerTableHeaders}>Address</th>
                                 <th className = {styles.centerTableHeaders}>Delivery Status</th>
@@ -74,7 +74,7 @@ const AllLiveOrders: React.FC = () => {
                                     return (
                                         <tr>
                                             <td className = {styles.tableRows}>{singleOrder?.id}</td>
-                                            <td className = {styles.tableRows}>{singleOrder?.items}</td>
+                                            <td className = {styles.itemTableRow}>{singleOrder?.items}</td>
                                             <td className = {styles.tableRows}>{singleOrder?.email}</td>
                                             <td className = {styles.tableRows}>{singleOrder?.address}</td>
                                             <td className = {styles.tableRows}>{singleOrder?.delivery_status}</td>
