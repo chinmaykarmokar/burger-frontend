@@ -44,7 +44,7 @@ const DeliveryPersonHomeComponent: React.FC = () => {
             order_id: 0
         }
 
-        await axios.post("http://localhost:3000/api/delivery/orderCompletion", orderUpdateData, configParams)
+        await axios.post("https://burpger-1yxc.onrender.com/api/delivery/orderCompletion", orderUpdateData, configParams)
         .then((response) => {
             dispatch(completeOrder(response.data));
             console.log(response.data);
@@ -76,7 +76,7 @@ const DeliveryPersonHomeComponent: React.FC = () => {
                     <Col md = {8} className = {styles.cartCardCol}>
                     {
                         (orderAssigned?.length === 0) ? 
-                            <h1>You have no orders assigned.</h1>
+                            <h1 className = {styles.noOrdersHeader}>You have no orders assigned.</h1>
                         :
                         orderAssigned?.map((singleOrder: any) => {
                             return (

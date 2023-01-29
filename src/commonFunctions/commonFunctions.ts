@@ -23,71 +23,75 @@ import { getAssignedOrders } from "../state/actions/deliveryPersonActions";
 import { singleOrder } from "../state/actions/adminActions";
 
 export const getAdminData = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/admin/adminDetails", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/admin/adminDetails", configParams)
     .then((response) => {
         dispatch(getAdminDetails(response?.data?.data));
     })
 }
 
 export const getCustomerDetails = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/customers/allCustomers", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/customers/allCustomers", configParams)
     .then((response) => {
         dispatch(getCustomer(response?.data?.data));
     }) 
 }
 
 export const getAllCustomersDetails = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/admin/allCustomers", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/admin/allCustomers", configParams)
     .then((response) => {
         dispatch(getAllCustomers(response?.data?.data));
     })
 }
 
 export const getAllLiveOrdersList = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/admin/getAllLiveOrders", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/admin/getAllLiveOrders", configParams)
     .then((response: any) => {
         dispatch(getAllLiveOrders(response.data));
     })
 }
 
 export const fetchAllCompletedOrders = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/admin/getAllCompletedOrders", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/admin/getAllCompletedOrders", configParams)
     .then((response) => {
         dispatch(getAllCompletedOrders(response?.data));
     })
 }
 
 export const fetchCompleteMenuAdmin = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/admin/getCompleteMenu", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/admin/getCompleteMenu", configParams)
     .then((response) => {
         dispatch(getCompleteMenuAdmin(response?.data?.data));
     })
 }
 
 export const getMenuItems = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/customers/menu", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/customers/menu", configParams)
     .then((response) => {
         dispatch(getCompleteMenu(response?.data?.data));
     }) 
 }
 
 export const getItemsFromCart = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/customers/getCartItems", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/customers/getCartItems", configParams)
     .then((response) => {
         dispatch(getCartItems(response?.data?.data));
     })
 }
 
 export const getUserSpecificOrders = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/customers/getMyOrders", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/customers/getMyOrders", configParams)
     .then((response) => {
         dispatch(getUserWiseOrders(response?.data?.data));
     })
 }
 
 export const fetchAssignedOrders = async (dispatch: any, configParams: Object) => {
-    await axios.get("http://localhost:3000/api/delivery/orderAssigned", configParams)
+    await axios.get("https://burpger-1yxc.onrender.com/api/delivery/orderAssigned", configParams)
     .then((response) => {
         dispatch(getAssignedOrders(response?.data?.data));
     })
 }
+
+// export const getDeliveryPersonDetails = async (dispatch: any, configParams: Object) => {
+//     await axios.get("")
+// }

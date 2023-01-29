@@ -38,7 +38,7 @@ const AssignOrderComponent: React.FC = () => {
 
     const getOrderDetailsAndDeliveryPerson = async (configParams: Object) => {
         if (router.isReady) {
-            await axios.get(`http://localhost:3000/api/admin/findDeliveryPersonAvailable/${userOrder}`, configParams)
+            await axios.get(`https://burpger-1yxc.onrender.com/api/admin/findDeliveryPersonAvailable/${userOrder}`, configParams)
             .then((response) => {
                 dispatch(fetchOrderAndDeliveryPerson(response?.data?.data));
             })
@@ -47,7 +47,7 @@ const AssignOrderComponent: React.FC = () => {
 
     const getSingleOrderToAssign = async (configParams: Object) => {
         if (router.isReady) {
-            await axios.get(`http://localhost:3000/api/admin/getSingleOrderToAssign/${userOrder}`, configParams)
+            await axios.get(`https://burpger-1yxc.onrender.com/api/admin/getSingleOrderToAssign/${userOrder}`, configParams)
             .then((response) => {
                 dispatch(singleOrder(response?.data?.data));
             })
@@ -62,7 +62,7 @@ const AssignOrderComponent: React.FC = () => {
             order_id: userOrder
         }
         
-        await axios.post(`http://localhost:3000/api/admin/assignOrder/${userOrder}/${deliveryPersonID}`, provideAddressAndOrderDetailsToDeliveryPerson, configParams)
+        await axios.post(`https://burpger-1yxc.onrender.com/api/admin/assignOrder/${userOrder}/${deliveryPersonID}`, provideAddressAndOrderDetailsToDeliveryPerson, configParams)
         .then((response) => {
             dispatch(assignOrderToDeliveryPerson(response.data));
             // alert("Delivery person assigned with ")

@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 // Import router
 import { useRouter } from 'next/router';
 
+// Import head
+import Head from "next/head";
+
 // Import styles
 import styles from "../../styles/Home.module.css";
 
@@ -32,6 +35,9 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Head>
+          <title>Burpger</title>
+      </Head>
       <Container fluid className = {styles.brandContainer}>
           <Row>
               <h1><FaHamburger/> Burpger</h1>

@@ -54,7 +54,7 @@ const CustomerLoginComponent: React.FC = () => {
     }
 
     const loginCustomer = async () => {
-        await axios.post("http://localhost:3000/api/customers/customerLogin", loginDetails, config)
+        await axios.post("https://burpger-1yxc.onrender.com/api/customers/customerLogin", loginDetails, config)
         .then((response) => {
             localStorage.setItem("customer_token", response?.data?.accessToken);
             dispatch(customerLogin(response.data));

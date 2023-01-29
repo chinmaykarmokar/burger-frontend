@@ -23,7 +23,8 @@ const TotalCompletedOrdersCard: React.FC = () => {
     useEffect(() => {
         const config = {
             headers: {
-                "authorization": `Bearer ${localStorage.getItem("access_token")}`
+                "authorization": `Bearer ${localStorage.getItem("access_token")}`,
+                "Access-Control-Allow-Origin": "*"
             }
         }
 

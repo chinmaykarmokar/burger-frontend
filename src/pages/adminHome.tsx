@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // Import router
 import { useRouter } from "next/router";
 
+// Import head
+import Head from "next/head";
+
 // Import hooks provided by react-redux
 import { useSelector, useDispatch } from "react-redux";
 
@@ -76,6 +79,9 @@ const AdminHome: React.FC = () => {
     return (
         (hydrated && typeof window !== "undefined" && localStorage.getItem("access_token")) ? 
             <AdminLayoutComponent user = {`${adminData?.[0]?.firstname} ${adminData?.[0]?.lastname}`}>
+                <Head>
+                    <title>Burpger | Admin</title>
+                </Head>
                 <Container fluid className = {styles.cardsContainer}>
                     <h1 className = {styles.pageHeader1}><BiStats/> Statistics Overview</h1>
                     <Row>
@@ -96,7 +102,7 @@ const AdminHome: React.FC = () => {
                 <Container fluid className = {styles.cardsContainer}>
                     <h1 className = {styles.pageHeader1}><BiDetail/> Detailed Stats</h1>
                     <Row>
-                        <Col>
+                        <Col md = {4}>
                             <Card
                                 onClick = {redirectToInventoryPage}
                                 className = {styles.detailedCards}
@@ -105,7 +111,7 @@ const AdminHome: React.FC = () => {
                                 <Card.Text>View inventory and update items.</Card.Text>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col md = {4}>
                             <Card
                                 onClick = {redirectToCompletedOrdersPage}
                                 className = {styles.detailedCards}
@@ -114,7 +120,7 @@ const AdminHome: React.FC = () => {
                                 <Card.Text>View completed orders.</Card.Text>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col md = {4}>
                             <Card 
                                 onClick = {redirectToLiveOrdersPage}
                                 className = {styles.detailedCards}

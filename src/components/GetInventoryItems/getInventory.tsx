@@ -29,7 +29,7 @@ const GetCompleteInventoryItems: React.FC = () => {
     const completeInventory = useSelector((state: any) => {return state?.admin?.completeInventoryData});
 
     const fetchCompleteInventoryItems = async (configParams: Object) => {
-        await axios.get("http://localhost:3000/api/admin/allFoodItems", configParams)
+        await axios.get("https://burpger-1yxc.onrender.com/api/admin/allFoodItems", configParams)
         .then((response) => {
             dispatch(getCompleteInventory(response.data));
             // console.log(response.data)

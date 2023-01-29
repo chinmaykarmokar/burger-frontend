@@ -54,7 +54,7 @@ const AdminLoginComponent: React.FC = () => {
     const adminLoginHandler = async (event: any) => {
         event.preventDefault();
 
-        await axios.post("http://localhost:3000/api/admin/adminLogin", loginDetails, config)
+        await axios.post("https://burpger-1yxc.onrender.com/api/admin/adminLogin", loginDetails, config)
         .then((response) => {
             localStorage.setItem("access_token", response?.data?.accessToken)
 

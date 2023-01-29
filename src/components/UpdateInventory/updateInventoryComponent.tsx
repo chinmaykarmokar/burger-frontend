@@ -47,7 +47,7 @@ const UpdateInventoryComponent: React.FC = () => {
     // Get specific item from the inventory
     const getSingleFoodItemFromInventory = async (configParams: Object) => {
         if (router.isReady) {
-            await axios.get(`http://localhost:3000/api/admin/singleInventoryItem/${inventoryItem}`, configParams)
+            await axios.get(`https://burpger-1yxc.onrender.com/api/admin/singleInventoryItem/${inventoryItem}`, configParams)
             .then((response) => {
                 dispatch(getSingleInventoryItem(response.data));
             })
@@ -72,7 +72,7 @@ const UpdateInventoryComponent: React.FC = () => {
 
     // Update quantity of current items
     const updateItemQuantity = async (configParams: any) => {
-        await axios.put(`http://localhost:3000/api/admin/updateInventory/${inventoryItem}`,updateItemDetails, configParams)
+        await axios.put(`https://burpger-1yxc.onrender.com/api/admin/updateInventory/${inventoryItem}`,updateItemDetails, configParams)
         .then((response) => {
             dispatch(updateItemsInInventory(response?.data));
             router.push("/adminHome");

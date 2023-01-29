@@ -83,7 +83,7 @@ const CustomerRegisterComponent: React.FC = () => {
     const registerCustomer = async (event: any) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3000/api/customers/customerRegister", customerRegistrationDetails, config)
+        axios.post("https://burpger-1yxc.onrender.com/api/customers/customerRegister", customerRegistrationDetails, config)
         .then((response) => {
             dispatch(createCustomerProfile(response.data));
             setPostStatus(true);

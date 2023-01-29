@@ -79,3 +79,32 @@
     color: #000;
     font-family: Patua One;
 }
+
+.noItemsContainer {
+    padding: 3%;
+    background-color: beige;
+}
+
+.noItemsInCartHeader {
+    font-family: Patua One;
+}
+
+@media only screen and (max-width: 600px) {
+    .cartCardCol {
+        padding: 4%;
+    }
+
+    .cartCard {
+        margin-bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cartCardCol {
+        padding: 4%;
+    }
+
+    .cartCard {
+        margin-bottom: 5%;
+    }
+}
