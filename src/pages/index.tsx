@@ -75,8 +75,8 @@ const Home: React.FC = () => {
                       </h4>
                   </Button>
               </Col>
-              {
-                !isMobile ? 
+              {/* { */}
+                {/* !isMobile ?  */}
                   <Col md = {6}>
                       <Image fluid
                           src='https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png'
@@ -84,9 +84,9 @@ const Home: React.FC = () => {
                           width="auto"  
                       />
                   </Col>
-                  : 
-                  <Col md = {6}></Col>
-              }
+                  {/* :  */}
+                  {/* <Col md = {6}></Col> */}
+              {/* } */}
           </Row>
       </Container>
       <Container fluid className = {styles.stackContainer}>
@@ -107,7 +107,7 @@ const Home: React.FC = () => {
           </Row>
       </Container>
       <Container fluid className = {styles.copyrightContainer}>
-          <h4 className = {styles.copyrightText}><FaCopyright/> Copyright Burpger by Chinmay Karmokar.</h4>
+          <h4 className = {styles.copyrightText}><FaCopyright/> Copyright Burpger 2023 - Chinmay Karmokar</h4>
       </Container>
     </>
   )

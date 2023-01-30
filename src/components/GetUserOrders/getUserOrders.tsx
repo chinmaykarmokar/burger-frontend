@@ -9,6 +9,9 @@ import { getCustomerDetails, getUserSpecificOrders } from "../../commonFunctions
 // Import layout
 import CustomerLayoutComponent from "../../Layout/customerLayout";
 
+// Import components
+import LoaderComponent from "../LoaderComponent/loader";
+
 // Import styles
 import styles from "./getUserOrders.module.css";
 
@@ -39,34 +42,43 @@ const GetUserOrders: React.FC = () => {
     console.log(ordersData);
 
     return (
-        <CustomerLayoutComponent user = {`${customerData?.[0]?.firstname} ${customerData?.[0]?.lastname}`}>
+        <>
             {
-                (ordersData?.length !== 0) ?
-                <Container fluid className = {styles.cartContainer}>
-                    <h1 className = {styles.pageHeader}><FaRegFile/> Your Orders</h1>
-                    <Row>
-                        <Col md = {8} className = {styles.cartCardCol}>
-                        {
-                            ordersData?.map((singleOrder: any) => {
-                                return (
-                                    <Card className = {styles.cartCard}>
-                                        <h3><IoFastFoodOutline/> {singleOrder?.items}</h3>
-                                        <h4><IoPricetagOutline/> ₹ {singleOrder?.price}</h4>
-                                        <h4 className = {styles.orderStatus}>{singleOrder?.delivery_status}</h4>
-                                    </Card>
-                                )
-                            })
-                        }
-                        </Col>
-                        <Col md = {4}></Col>
-                    </Row>
-                </Container>
+                (!ordersData || ordersData == "undefined") ? 
+                    <>
+                        <LoaderComponent/>
+                    </>
                 :
-                <>
-                    No orders available
-                </>
+                    <CustomerLayoutComponent user = {`${customerData?.[0]?.firstname} ${customerData?.[0]?.lastname}`}>
+                        {
+                            (ordersData?.length !== 0) ?
+                            <Container fluid className = {styles.cartContainer}>
+                                <h1 className = {styles.pageHeader}><FaRegFile/> Your Orders</h1>
+                                <Row>
+                                    <Col md = {8} className = {styles.cartCardCol}>
+                                    {
+                                        ordersData?.map((singleOrder: any) => {
+                                            return (
+                                                <Card className = {styles.cartCard}>
+                                                    <h3><IoFastFoodOutline/> {singleOrder?.items}</h3>
+                                                    <h4><IoPricetagOutline/> ₹ {singleOrder?.price}</h4>
+                                                    <h4 className = {styles.orderStatus}>{singleOrder?.delivery_status}</h4>
+                                                </Card>
+                                            )
+                                        })
+                                    }
+                                    </Col>
+                                    <Col md = {4}></Col>
+                                </Row>
+                            </Container>
+                            :
+                            <>
+                                No orders available
+                            </>
+                        }
+                    </CustomerLayoutComponent>
             }
-        </CustomerLayoutComponent>
+        </>
     )
 }
 

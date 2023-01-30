@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+// Import router
+import { useRouter } from "next/router";
 
 // Import styles
 import styles from "./customerNavbar.module.css";
@@ -10,11 +13,22 @@ import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { FaHamburger, FaRegUserCircle } from "react-icons/fa";
 
 const CustomerNavbarComponent = ({ loggedInPerson }: any) => {
+    const router = useRouter();
+
+    const logOutHandler = () => {
+        localStorage?.removeItem("customer_token");
+        router.push("/");
+    }
+
+    useEffect(() => {
+        logOutHandler;
+    },[])
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" className = {styles.mainCustomerNav}>
                 <Container fluid>
-                    <Navbar.Brand href="/" className = {styles.brand}><FaHamburger/> Burpger</Navbar.Brand>
+                    <Navbar.Brand href="/customerHome" className = {styles.brand}><FaHamburger/> Burpger</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
@@ -29,7 +43,7 @@ const CustomerNavbarComponent = ({ loggedInPerson }: any) => {
                                     <FaRegUserCircle/> {loggedInPerson}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>Log out</Dropdown.Item>
+                                    <Dropdown.Item onClick = {logOutHandler}>Log out</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Nav>
