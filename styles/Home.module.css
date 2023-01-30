@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 .brandContainer {
+  margin-top: 2%;
   padding: 2% !important;
   text-align: center;
   background-color: beige;

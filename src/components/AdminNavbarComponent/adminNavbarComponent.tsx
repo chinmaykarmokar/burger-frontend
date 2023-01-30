@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+// Import router
+import { useRouter } from "next/router";
 
 // Import styles
 import styles from "./adminNavbar.module.css";
@@ -10,6 +13,17 @@ import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { FaHamburger, FaRegUserCircle } from "react-icons/fa";
 
 const AdminNavbarComponent = ({ loggedInPerson }: any) => {
+    const router = useRouter();
+
+    const logOutHandler = () => {
+        localStorage?.removeItem("access_token");
+        router.push("/");
+    }
+
+    useEffect(() => {
+        logOutHandler;
+    },[])
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" className = {styles.mainCustomerNav}>
@@ -27,7 +41,7 @@ const AdminNavbarComponent = ({ loggedInPerson }: any) => {
                                     <FaRegUserCircle/> {loggedInPerson}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>Log out</Dropdown.Item>
+                                    <Dropdown.Item onClick = {logOutHandler}>Log out</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Nav>

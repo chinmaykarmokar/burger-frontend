@@ -12,6 +12,13 @@ export const loginDeliveryPerson = (data: any) => {
     }
 }
 
+export const deliveryPersonDetails = (data: any) => {
+    return {
+        type: "deliveryPersonDetails",
+        payload: data
+    }
+}
+
 export const getAssignedOrders = (data: any) => {
     return {
         type: "getAssignedOrders",

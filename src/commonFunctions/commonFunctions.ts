@@ -13,6 +13,7 @@ import axios from "axios";
 import { getAdminDetails } from "../state/actions/adminActions";
 import { getCustomer } from "../state/actions/customerActions";
 import { getAllCustomers } from "../state/actions/adminActions";
+import { deliveryPersonDetails } from "../state/actions/deliveryPersonActions";
 import { getCompleteMenu } from "../state/actions/customerActions";
 import { getCompleteMenuAdmin } from "../state/actions/adminActions";
 import { getAllLiveOrders } from "../state/actions/adminActions";
@@ -40,6 +41,14 @@ export const getAllCustomersDetails = async (dispatch: any, configParams: Object
     await axios.get("https://burpger-1yxc.onrender.com/api/admin/allCustomers", configParams)
     .then((response) => {
         dispatch(getAllCustomers(response?.data?.data));
+    })
+}
+
+export const getDeliveryPersonDetails = async (dispatch: any, configParams: Object) => {
+    await axios.get("https://burpger-1yxc.onrender.com/api/delivery/deliveryPerson", configParams)
+    .then((response) => {
+        // console.log(response.data.data[0]);
+        dispatch(deliveryPersonDetails(response?.data?.data));
     })
 }
 

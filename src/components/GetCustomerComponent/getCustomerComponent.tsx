@@ -20,6 +20,9 @@ import { getMenuItems, getItemsFromCart } from "../../commonFunctions/commonFunc
 // Import layout
 import CustomerLayoutComponent from "../../Layout/customerLayout";
 
+// Import components
+import LoaderComponent from "../LoaderComponent/loader";
+
 // Import styles
 import styles from "./getCustomer.module.css";
 
@@ -130,94 +133,103 @@ const GetCustomerComponent: React.FC = () => {
     }
 
     return (
-        <CustomerLayoutComponent user = {`${customerData?.[0]?.firstname} ${customerData?.[0]?.lastname}`}>
-            <Container fluid className = {styles.headerContainer}>
-                <Row>
-                    <Col className = {styles.header}>
-                        <h1>Menu &nbsp;
-                        <Button 
-                            onClick = {changeMenuState}
-                            className = {styles.headerButton}
-                        >
-                            <RiPlantFill/> Veg Only
-                        </Button>
-                        </h1>
-                    </Col>
-                    <Col>
-                        
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Container>
+        <>
             {
-                (hydrated && typeof(window) !== "undefined" && localStorage.getItem("customer_token") && !vegMenu) ?
-                    <Container fluid className = {styles.menuContainer}>
-                        <Row>
-                        {
-                            menuData?.map((singleMenuItem: any) => {
-                                return (
-                                    <Col md = {3} className = {styles.burgerCardsCol}>
-                                        <Card className = {styles.burgerCard}>
-                                            <Card.Img 
-                                                variant="top" 
-                                                src = {singleMenuItem?.burger_image} 
-                                                className = {styles.burgerCardImage}
-                                            />
-                                            <Card.Body>
-                                                <Card.Title>{singleMenuItem?.burger_name}</Card.Title>
-                                                <Card.Text><RiPriceTag3Fill/> ₹ {singleMenuItem?.price}</Card.Text>
-                                                <Card.Text><BiFoodTag/> {singleMenuItem?.category}</Card.Text>
-                                                <Button
-                                                    className = {styles.addToCartButton}
-                                                    onClick = {() => {
-                                                        addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
-                                                    }}
-                                                >
-                                                    <RiShoppingCartFill/> Add To Cart
-                                                </Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                )
-                            })
-                        }
-                        </Row>
-                    </Container>
+                (!menuData || menuData == "undefined") ?
+                    <>
+                        <LoaderComponent/>
+                    </>
                 :
-                    <Container fluid className = {styles.menuContainer}>
+                    <CustomerLayoutComponent user = {`${customerData?.[0]?.firstname} ${customerData?.[0]?.lastname}`}>
+                    <Container fluid className = {styles.headerContainer}>
                         <Row>
-                        {
-                            vegMenuItemsData?.map((singleMenuItem: any) => {
-                                return (
-                                    <Col md = {3} className = {styles.burgerCardsCol}>
-                                        <Card className = {styles.burgerCard}>
-                                            <Card.Img 
-                                                variant="top" 
-                                                src = {singleMenuItem?.burger_image} 
-                                                className = {styles.burgerCardImage}
-                                            />
-                                            <Card.Body>
-                                                <Card.Title>{singleMenuItem?.burger_name}</Card.Title>
-                                                <Card.Text><RiPriceTag3Fill/> ₹ {singleMenuItem?.price}</Card.Text>
-                                                <Card.Text><BiFoodTag/> {singleMenuItem?.category}</Card.Text>
-                                                <Button
-                                                    className = {styles.addToCartButton}
-                                                    onClick = {() => {
-                                                        addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
-                                                    }}
-                                                >
-                                                    <RiShoppingCartFill/> Add To Cart
-                                                </Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                )
-                            })
-                        }
+                            <Col className = {styles.header}>
+                                <h1>Menu &nbsp;
+                                <Button 
+                                    onClick = {changeMenuState}
+                                    className = {styles.headerButton}
+                                >
+                                    <RiPlantFill/> Veg Only
+                                </Button>
+                                </h1>
+                            </Col>
+                            <Col>
+                                
+                            </Col>
+                            <Col></Col>
                         </Row>
                     </Container>
+                    {
+                        (hydrated && typeof(window) !== "undefined" && localStorage.getItem("customer_token") && !vegMenu) ?
+                            <Container fluid className = {styles.menuContainer}>
+                                <Row>
+                                {
+                                    menuData?.map((singleMenuItem: any) => {
+                                        return (
+                                            <Col md = {3} className = {styles.burgerCardsCol}>
+                                                <Card className = {styles.burgerCard}>
+                                                    <Card.Img 
+                                                        variant="top" 
+                                                        src = {singleMenuItem?.burger_image} 
+                                                        className = {styles.burgerCardImage}
+                                                    />
+                                                    <Card.Body>
+                                                        <Card.Title>{singleMenuItem?.burger_name}</Card.Title>
+                                                        <Card.Text><RiPriceTag3Fill/> ₹ {singleMenuItem?.price}</Card.Text>
+                                                        <Card.Text><BiFoodTag/> {singleMenuItem?.category}</Card.Text>
+                                                        <Button
+                                                            className = {styles.addToCartButton}
+                                                            onClick = {() => {
+                                                                addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
+                                                            }}
+                                                        >
+                                                            <RiShoppingCartFill/> Add To Cart
+                                                        </Button>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    })
+                                }
+                                </Row>
+                            </Container>
+                        :
+                            <Container fluid className = {styles.menuContainer}>
+                                <Row>
+                                {
+                                    vegMenuItemsData?.map((singleMenuItem: any) => {
+                                        return (
+                                            <Col md = {3} className = {styles.burgerCardsCol}>
+                                                <Card className = {styles.burgerCard}>
+                                                    <Card.Img 
+                                                        variant="top" 
+                                                        src = {singleMenuItem?.burger_image} 
+                                                        className = {styles.burgerCardImage}
+                                                    />
+                                                    <Card.Body>
+                                                        <Card.Title>{singleMenuItem?.burger_name}</Card.Title>
+                                                        <Card.Text><RiPriceTag3Fill/> ₹ {singleMenuItem?.price}</Card.Text>
+                                                        <Card.Text><BiFoodTag/> {singleMenuItem?.category}</Card.Text>
+                                                        <Button
+                                                            className = {styles.addToCartButton}
+                                                            onClick = {() => {
+                                                                addBurgerToCart(config, customerData?.[0]?.email, singleMenuItem?.burger_name, singleMenuItem?.price, singleMenuItem?.price, singleMenuItem?.id)
+                                                            }}
+                                                        >
+                                                            <RiShoppingCartFill/> Add To Cart
+                                                        </Button>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    })
+                                }
+                                </Row>
+                            </Container>
+                    }
+                </CustomerLayoutComponent>
             }
-        </CustomerLayoutComponent>
+        </> 
     )
 }
 
