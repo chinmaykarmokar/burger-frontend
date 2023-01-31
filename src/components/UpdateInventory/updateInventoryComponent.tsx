@@ -65,10 +65,13 @@ const UpdateInventoryComponent: React.FC = () => {
     },[router.isReady])
 
     console.log(singleItemFromInventory?.data);
+    console.log(typeof(singleItemFromInventory?.data?.quantity));
 
     const updateItemDetails = {
         quantity: parseInt(quantity)
     }
+
+    console.log(updateItemDetails.quantity);
 
     // Update quantity of current items
     const updateItemQuantity = async (configParams: any) => {
