@@ -82,7 +82,7 @@ const Home: React.FC = () => {
                 {/* !isMobile ?  */}
                   <Col md = {6}>
                       <Image fluid
-                          src='https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png'
+                          src='/assets/burger-home.png'
                           height="auto"
                           width="auto"  
                       />

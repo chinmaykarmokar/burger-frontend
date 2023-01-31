@@ -35,8 +35,8 @@
 
 @media only screen and (max-width: 600px) {
     .actualLoader {
-        top: 45%;
-        left: 37%;
+        top: 40% !important;
+        left: 36% !important;
     }
 }
 
