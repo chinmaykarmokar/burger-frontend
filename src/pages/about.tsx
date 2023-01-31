@@ -17,7 +17,9 @@ import { IoShareSocialOutline } from "react-icons/io5";
 const AboutPage: React.FC = () => {
     return (
         <>
-            <Head>About</Head>
+            <Head>
+                <title>About</title>
+            </Head>
             <Container fluid className = {styles.brandContainer}>
                 <Row>
                     <h1><FaHamburger/> Burpger</h1>
