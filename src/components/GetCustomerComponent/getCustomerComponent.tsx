@@ -105,7 +105,7 @@ const GetCustomerComponent: React.FC = () => {
             new_burger_price: newBurgerPrice
         }
 
-        await axios.post(`http://localhost:3000/api/customers/addToCart/${burgerIDFromMenu}`, itemToBeAddedInCart, configParams)
+        await axios.post(`https://burpger-1yxc.onrender.com/api/customers/addToCart/${burgerIDFromMenu}`, itemToBeAddedInCart, configParams)
         .then((response) => {
             console.log(response)
             dispatch(addToCart(response?.data));
