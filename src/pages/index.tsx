@@ -69,7 +69,10 @@ const Home: React.FC = () => {
                       </Row>
                   </Container>
                   <br/><br/>
-                  <Button className = {styles.aboutButton}>
+                  <Button 
+                        className = {styles.aboutButton}
+                        onClick = {() => {router.push("/about")}}
+                  >
                       <h4>
                         <FaInfoCircle className = {styles.aboutIcon}/> About Us
                       </h4>

@@ -64,7 +64,7 @@ const CartComponent: React.FC = () => {
             new_burger_price: newBurgerPrice + originalBurgerPrice
         }
         
-        await axios.put(`http://localhost:3000/api/customers/updateCartToAdd/${burgerIDToUpdate}`, burgerToUpdateInCart, configParams)
+        await axios.put(`https://burpger-1yxc.onrender.com/api/customers/updateCartToAdd/${burgerIDToUpdate}`, burgerToUpdateInCart, configParams)
         .then((response) => {
             dispatch(addToCart(response?.data));
             console.log(response?.data);
@@ -81,7 +81,7 @@ const CartComponent: React.FC = () => {
             new_burger_price: newBurgerPrice - originalBurgerPrice
         }
 
-        await axios.put(`http://localhost:3000/api/customers/updateCartToRemove/${burgerIDToUpdate}`, burgerToUpdateInCart, configParams)
+        await axios.put(`https://burpger-1yxc.onrender.com/api/customers/updateCartToRemove/${burgerIDToUpdate}`, burgerToUpdateInCart, configParams)
         .then((response) => {
             dispatch(addToCart(response?.data));
             console.log(response?.data);
